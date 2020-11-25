@@ -10,60 +10,64 @@
  * basis, WITHOUT WARRANTY OF ANY KIND, either express or  implied. Please refer to
  * the license for the specific language governing your rights and limitations.
  */
-
 package org.pentaho.actionsequence.dom.actions;
 
+import static java.lang.Integer.parseInt;
 import java.util.ArrayList;
-import java.util.Arrays;
+import static java.util.Arrays.asList;
 
 import org.pentaho.actionsequence.dom.ActionInput;
 import org.pentaho.actionsequence.dom.ActionInputConstant;
-import org.pentaho.actionsequence.dom.ActionSequenceDocument;
 import org.pentaho.actionsequence.dom.IActionInput;
+import static org.pentaho.actionsequence.dom.IActionSequenceDocument.BIGDECIMAL_TYPE;
+import static org.pentaho.actionsequence.dom.IActionSequenceDocument.INTEGER_TYPE;
+import static org.pentaho.actionsequence.dom.IActionSequenceDocument.LONG_TYPE;
+import static org.pentaho.actionsequence.dom.IActionSequenceDocument.STRING_TYPE;
 
-@SuppressWarnings( { "rawtypes", "unchecked" } )
+@SuppressWarnings({"rawtypes", "unchecked"})
 public class ActionInputTypeFilter implements IActionInputFilter {
 
-  ArrayList types = new ArrayList();
-  boolean includeConstants = false;
+    ArrayList types = new ArrayList();
+    boolean includeConstants = false;
 
-  public ActionInputTypeFilter( String[] types, boolean includeConstants ) {
-    if ( types != null ) {
-      this.types.addAll( Arrays.asList( types ) );
-    }
-    this.includeConstants = includeConstants;
-  }
-
-  public ActionInputTypeFilter( String[] types ) {
-    this( types, false );
-  }
-
-  public ActionInputTypeFilter( String type ) {
-    this( new String[] { type }, false );
-  }
-
-  public boolean accepts( IActionInput actionInput ) {
-    boolean result = false;
-    if ( includeConstants && ( actionInput instanceof ActionInputConstant ) ) {
-      ActionInputConstant constant = (ActionInputConstant) actionInput;
-      if ( types.contains( ActionSequenceDocument.STRING_TYPE ) ) {
-        result = constant.getValue() instanceof String;
-      } else if ( types.contains( ActionSequenceDocument.LONG_TYPE )
-          || types.contains( ActionSequenceDocument.INTEGER_TYPE )
-          || types.contains( ActionSequenceDocument.BIGDECIMAL_TYPE ) ) {
-        if ( constant.getValue() instanceof String ) {
-          try {
-            Integer.parseInt( constant.getStringValue() );
-            result = true;
-          } catch ( Exception ex ) {
-            result = false;
-          }
+    public ActionInputTypeFilter(String[] types, boolean includeConstants) {
+        if (types != null) {
+            this.types.addAll(asList(types));
         }
-      }
-    } else {
-      result = ( actionInput instanceof ActionInput ) && ( types.contains( ( (ActionInput) actionInput ).getType() ) );
+        this.includeConstants = includeConstants;
     }
-    return result;
-  }
+
+    public ActionInputTypeFilter(String[] types) {
+        this(types, false);
+    }
+
+    public ActionInputTypeFilter(String type) {
+        this(new String[]{type}, false);
+    }
+
+    @Override
+    public boolean accepts(IActionInput actionInput) {
+        boolean result = false;
+        if (includeConstants && (actionInput instanceof ActionInputConstant)) {
+            ActionInputConstant constant = (ActionInputConstant) actionInput;
+            if (types.contains(STRING_TYPE)) {
+                result = constant.getValue() instanceof String;
+            } else if (types.contains(LONG_TYPE)
+                    || types.contains(INTEGER_TYPE)
+                    || types.contains(BIGDECIMAL_TYPE)) {
+                if (constant.getValue() instanceof String) {
+                    try {
+                        parseInt(constant.getStringValue());
+                        result = true;
+                    } catch (NumberFormatException ex) {
+                        result = false;
+                    }
+                }
+            }
+        } else {
+            result = (actionInput instanceof ActionInput) && (types.contains(((ActionInput) actionInput).getType()));
+        }
+        return result;
+    }
 
 }

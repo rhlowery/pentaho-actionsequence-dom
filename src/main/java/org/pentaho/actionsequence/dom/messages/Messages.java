@@ -10,36 +10,37 @@
  * basis, WITHOUT WARRANTY OF ANY KIND, either express or  implied. Please refer to
  * the license for the specific language governing your rights and limitations.
  */
-
 package org.pentaho.actionsequence.dom.messages;
 
-import java.text.MessageFormat;
+import static java.text.MessageFormat.format;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
+import static java.util.ResourceBundle.getBundle;
 
 public class Messages {
-  private static final String BUNDLE_NAME = "org.pentaho.actionsequence.dom.messages.messages"; //$NON-NLS-1$
 
-  private static final ResourceBundle RESOURCE_BUNDLE = ResourceBundle.getBundle( BUNDLE_NAME );
+    private static final String BUNDLE_NAME = "org.pentaho.actionsequence.dom.messages.messages"; //$NON-NLS-1$
 
-  private Messages() {
-  }
+    private static final ResourceBundle RESOURCE_BUNDLE = getBundle(BUNDLE_NAME);
 
-  public static String getString( String key ) {
-    // TODO Auto-generated method stub
-    try {
-      return RESOURCE_BUNDLE.getString( key );
-    } catch ( MissingResourceException e ) {
-      return '!' + key + '!';
+    private Messages() {
     }
-  }
 
-  public static String getString( String key, String param1 ) {
-    try {
-      Object[] args = { param1 };
-      return MessageFormat.format( key, args );
-    } catch ( Exception e ) {
-      return '!' + key + '!';
+    public static String getString(String key) {
+        // TODO Auto-generated method stub
+        try {
+            return RESOURCE_BUNDLE.getString(key);
+        } catch (MissingResourceException e) {
+            return '!' + key + '!';
+        }
     }
-  }
+
+    public static String getString(String key, String param1) {
+        try {
+            Object[] args = {param1};
+            return format(key, args);
+        } catch (Exception e) {
+            return '!' + key + '!';
+        }
+    }
 }

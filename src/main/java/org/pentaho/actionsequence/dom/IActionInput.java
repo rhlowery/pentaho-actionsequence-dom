@@ -10,29 +10,29 @@
  * basis, WITHOUT WARRANTY OF ANY KIND, either express or  implied. Please refer to
  * the license for the specific language governing your rights and limitations.
  */
-
 package org.pentaho.actionsequence.dom;
 
 public interface IActionInput {
-  ActionInputConstant NULL_INPUT = new ActionInputConstant( (Object) null, null );
 
-  Object getValue();
+    ActionInputConstant NULL_INPUT = new ActionInputConstant((Object) null, null);
 
-  String getStringValue();
+    Object getValue();
 
-  String getStringValue( String defaultValue );
+    String getStringValue();
 
-  String getStringValue( boolean replaceParamReferences );
+    String getStringValue(String defaultValue);
 
-  String getStringValue( boolean replaceParamReferences, String defaultValue );
+    String getStringValue(boolean replaceParamReferences);
 
-  Boolean getBooleanValue();
+    String getStringValue(boolean replaceParamReferences, String defaultValue);
 
-  boolean getBooleanValue( boolean defaultValue );
+    Boolean getBooleanValue();
 
-  Integer getIntValue();
+    boolean getBooleanValue(boolean defaultValue);
 
-  int getIntValue( int defaultValue );
+    Integer getIntValue();
 
-  String getName();
+    int getIntValue(int defaultValue);
+
+    String getName();
 }

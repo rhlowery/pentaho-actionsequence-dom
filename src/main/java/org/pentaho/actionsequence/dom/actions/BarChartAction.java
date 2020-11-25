@@ -10,41 +10,43 @@
  * basis, WITHOUT WARRANTY OF ANY KIND, either express or  implied. Please refer to
  * the license for the specific language governing your rights and limitations.
  */
-
 package org.pentaho.actionsequence.dom.actions;
 
 import org.dom4j.Element;
 import org.pentaho.actionsequence.dom.ActionSequenceDocument;
+import static org.pentaho.actionsequence.dom.IActionSequenceDocument.COMPONENT_DEF_NAME;
 
 public class BarChartAction extends AbstractChartAction {
 
-  public static final String CHART_TYPE = "BarChart"; //$NON-NLS-1$
+    public static final String CHART_TYPE = "BarChart"; //$NON-NLS-1$
 
-  public BarChartAction( Element actionDefElement, IActionParameterMgr actionInputProvider ) {
-    super( actionDefElement, actionInputProvider );
-  }
-
-  public BarChartAction() {
-    super( COMPONENT_NAME );
-  }
-
-  protected void initNewActionDefinition() {
-    super.initNewActionDefinition();
-    setComponentDefinition( CHART_TYPE_XPATH, CHART_TYPE );
-  }
-
-  public String[] getReservedInputNames() {
-    return EXPECTED_INPUTS;
-  }
-
-  public static boolean accepts( Element element ) {
-    boolean result = false;
-    if ( AbstractChartAction.accepts( element ) ) {
-      element =
-          (Element) element.selectSingleNode( ActionSequenceDocument.COMPONENT_DEF_NAME
-              + "/chart-attributes/chart-type" ); //$NON-NLS-1$
-      result = ( element != null ) && element.getText().equals( CHART_TYPE );
+    public BarChartAction(Element actionDefElement, IActionParameterMgr actionInputProvider) {
+        super(actionDefElement, actionInputProvider);
     }
-    return result;
-  }
+
+    public BarChartAction() {
+        super(COMPONENT_NAME);
+    }
+
+    @Override
+    protected void initNewActionDefinition() {
+        super.initNewActionDefinition();
+        setComponentDefinition(CHART_TYPE_XPATH, CHART_TYPE);
+    }
+
+    @Override
+    public String[] getReservedInputNames() {
+        return EXPECTED_INPUTS;
+    }
+
+    public static boolean accepts(Element element) {
+        boolean result = false;
+        if (AbstractChartAction.accepts(element)) {
+            element
+                    = (Element) element.selectSingleNode(COMPONENT_DEF_NAME
+                            + "/chart-attributes/chart-type"); //$NON-NLS-1$
+            result = (element != null) && element.getText().equals(CHART_TYPE);
+        }
+        return result;
+    }
 }

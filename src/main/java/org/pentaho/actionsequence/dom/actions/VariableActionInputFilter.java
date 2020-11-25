@@ -10,7 +10,6 @@
  * basis, WITHOUT WARRANTY OF ANY KIND, either express or  implied. Please refer to
  * the license for the specific language governing your rights and limitations.
  */
-
 package org.pentaho.actionsequence.dom.actions;
 
 import org.pentaho.actionsequence.dom.ActionInput;
@@ -18,8 +17,9 @@ import org.pentaho.actionsequence.dom.IActionInput;
 
 public class VariableActionInputFilter implements IActionInputFilter {
 
-  public boolean accepts( IActionInput actionInput ) {
-    return ( actionInput instanceof ActionInput );
-  }
+    @Override
+    public boolean accepts(IActionInput actionInput) {
+        return (actionInput instanceof ActionInput);
+    }
 
 }

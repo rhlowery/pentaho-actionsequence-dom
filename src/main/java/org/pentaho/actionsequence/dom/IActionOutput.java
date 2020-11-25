@@ -10,24 +10,24 @@
  * basis, WITHOUT WARRANTY OF ANY KIND, either express or  implied. Please refer to
  * the license for the specific language governing your rights and limitations.
  */
-
 package org.pentaho.actionsequence.dom;
 
 /**
  * Convenience class used to distinguish action inputs from action outputs.
- * 
+ *
  * @author Angelo Rodriguez
- * 
+ *
  */
 public interface IActionOutput extends IActionInputVariable, IActionIOElement {
 
-  /**
-   * @return the mapped name if it exists, otherwise the input/output name is returned.
-   */
-  String getPublicName();
+    /**
+     * @return the mapped name if it exists, otherwise the input/output name is
+     * returned.
+     */
+    String getPublicName();
 
-  String getVariableName();
+    String getVariableName();
 
-  void setValue( Object value );
+    void setValue(Object value);
 
 }

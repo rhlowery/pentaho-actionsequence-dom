@@ -15,6 +15,7 @@ package org.pentaho.actionsequence.dom;
 
 import org.dom4j.Document;
 import org.dom4j.Element;
+import static org.pentaho.actionsequence.dom.ActionSequenceDocument.fireIoChanged;
 import org.pentaho.actionsequence.dom.actions.IActionParameterMgr;
 
 public class ActionSequenceInputSource implements IActionSequenceInputSource {
@@ -27,24 +28,29 @@ public class ActionSequenceInputSource implements IActionSequenceInputSource {
     this.actionInputProvider = actionInputProvider;
   }
 
+  @Override
   public void setOrigin( String origin ) {
     sourceElement.setName( origin );
-    ActionSequenceDocument.fireIoChanged( getActionSequenceInput() );
+        fireIoChanged( getActionSequenceInput() );
   }
 
+  @Override
   public String getOrigin() {
     return sourceElement.getName();
   }
 
+  @Override
   public void setName( String name ) {
     sourceElement.setText( name );
-    ActionSequenceDocument.fireIoChanged( getActionSequenceInput() );
+        fireIoChanged( getActionSequenceInput() );
   }
 
+  @Override
   public String getName() {
     return sourceElement.getText();
   }
 
+  @Override
   public IActionSequenceInput getActionSequenceInput() {
     ActionSequenceInput actionSequenceInput = null;
     if ( sourceElement != null ) {
@@ -59,12 +65,13 @@ public class ActionSequenceInputSource implements IActionSequenceInputSource {
     return actionSequenceInput;
   }
 
+  @Override
   public void delete() {
     Document doc = sourceElement.getDocument();
     if ( doc != null ) {
       IActionSequenceInput actionSequenceInput = getActionSequenceInput();
       sourceElement.detach();
-      ActionSequenceDocument.fireIoChanged( actionSequenceInput );
+            fireIoChanged( actionSequenceInput );
     }
   }
 }

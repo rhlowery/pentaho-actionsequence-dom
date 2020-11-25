@@ -10,11 +10,11 @@
  * basis, WITHOUT WARRANTY OF ANY KIND, either express or  implied. Please refer to
  * the license for the specific language governing your rights and limitations.
  */
-
 package org.pentaho.actionsequence.dom.actions;
 
 import org.pentaho.actionsequence.dom.IActionInput;
 
 public interface IActionInputFilter {
-  boolean accepts( IActionInput actionInput );
+
+    boolean accepts(IActionInput actionInput);
 }

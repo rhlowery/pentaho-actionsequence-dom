@@ -10,14 +10,14 @@
  * basis, WITHOUT WARRANTY OF ANY KIND, either express or  implied. Please refer to
  * the license for the specific language governing your rights and limitations.
  */
-
 package org.pentaho.actionsequence.dom;
 
 /**
- * This is a marker interface to indicate items that can be passed to an action definition as an input.
- * 
+ * This is a marker interface to indicate items that can be passed to an action
+ * definition as an input.
+ *
  * @author Angelo Rodriguez
- * 
+ *
  */
 public interface IActionInputSource {
 

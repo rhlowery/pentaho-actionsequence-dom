@@ -10,21 +10,20 @@
  * basis, WITHOUT WARRANTY OF ANY KIND, either express or  implied. Please refer to
  * the license for the specific language governing your rights and limitations.
  */
-
 package org.pentaho.actionsequence.dom;
 
 public interface IActionSequenceInputSource {
 
-  void setOrigin( String origin );
+    void setOrigin(String origin);
 
-  String getOrigin();
+    String getOrigin();
 
-  void setName( String name );
+    void setName(String name);
 
-  String getName();
+    String getName();
 
-  IActionSequenceInput getActionSequenceInput();
+    IActionSequenceInput getActionSequenceInput();
 
-  void delete();
+    void delete();
 
 }

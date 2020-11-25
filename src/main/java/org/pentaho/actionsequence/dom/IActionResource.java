@@ -10,7 +10,6 @@
  * basis, WITHOUT WARRANTY OF ANY KIND, either express or  implied. Please refer to
  * the license for the specific language governing your rights and limitations.
  */
-
 package org.pentaho.actionsequence.dom;
 
 import java.io.FileNotFoundException;
@@ -22,64 +21,64 @@ import org.pentaho.commons.connection.IPentahoStreamSource;
 
 public interface IActionResource extends IActionIOElement {
 
-  /**
-   * The Resource is a solution file
-   */
-  int SOLUTION_FILE_RESOURCE = 1;
+    /**
+     * The Resource is a solution file
+     */
+    int SOLUTION_FILE_RESOURCE = 1;
 
-  /**
-   * The resource is a URL
-   */
-  int URL_RESOURCE = 2;
+    /**
+     * The resource is a URL
+     */
+    int URL_RESOURCE = 2;
 
-  /**
-   * The resource is an arbitrary file
-   */
-  int FILE_RESOURCE = 3;
+    /**
+     * The resource is an arbitrary file
+     */
+    int FILE_RESOURCE = 3;
 
-  /**
-   * The resource type is unknown
-   */
-  int UNKNOWN_RESOURCE = 4;
+    /**
+     * The resource type is unknown
+     */
+    int UNKNOWN_RESOURCE = 4;
 
-  /**
-   * The resource type is an embedded string
-   */
-  int STRING = 5;
+    /**
+     * The resource type is an embedded string
+     */
+    int STRING = 5;
 
-  /**
-   * The resource type is embedded xml
-   */
-  int XML = 6;
+    /**
+     * The resource type is embedded xml
+     */
+    int XML = 6;
 
-  URI getUri();
+    URI getUri();
 
-  void setURI( URI uri );
+    void setURI(URI uri);
 
-  String getMimeType();
+    String getMimeType();
 
-  void setMimeType( String mimeType );
+    void setMimeType(String mimeType);
 
-  IPentahoStreamSource getDataSource() throws FileNotFoundException;
+    IPentahoStreamSource getDataSource() throws FileNotFoundException;
 
-  InputStream getInputStream() throws FileNotFoundException;
+    InputStream getInputStream() throws FileNotFoundException;
 
-  void delete();
+    void delete();
 
-  void setMapping( String publicName );
+    void setMapping(String publicName);
 
-  void setName( String resourceName );
+    void setName(String resourceName);
 
-  void setType( String ioType );
+    void setType(String ioType);
 
-  Element getElement();
+    Element getElement();
 
-  String getMapping();
+    String getMapping();
 
-  String getName();
+    String getName();
 
-  String getPublicName();
+    String getPublicName();
 
-  String getType();
+    String getType();
 
 }

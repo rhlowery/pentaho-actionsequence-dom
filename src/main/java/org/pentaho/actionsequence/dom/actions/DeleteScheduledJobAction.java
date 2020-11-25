@@ -10,42 +10,43 @@
  * basis, WITHOUT WARRANTY OF ANY KIND, either express or  implied. Please refer to
  * the license for the specific language governing your rights and limitations.
  */
-
 package org.pentaho.actionsequence.dom.actions;
 
 import org.dom4j.Element;
-import org.pentaho.actionsequence.dom.ActionSequenceDocument;
+import static org.pentaho.actionsequence.dom.IActionSequenceDocument.COMPONENT_DEF_NAME;
 
 public class DeleteScheduledJobAction extends AbstractJobSchedulerAction {
 
-  public static final String JOB_SCHEDULER_COMMAND = "deleteJob"; //$NON-NLS-1$
+    public static final String JOB_SCHEDULER_COMMAND = "deleteJob"; //$NON-NLS-1$
 
-  protected static final String[] EXPECTED_INPUTS = new String[] { JOB_NAME_ELEMENT };
+    protected static final String[] EXPECTED_INPUTS = new String[]{JOB_NAME_ELEMENT};
 
-  public DeleteScheduledJobAction( Element actionDefElement, IActionParameterMgr actionInputProvider ) {
-    super( actionDefElement, actionInputProvider );
-  }
-
-  public DeleteScheduledJobAction() {
-    super( COMPONENT_NAME );
-  }
-
-  protected void initNewActionDefinition() {
-    super.initNewActionDefinition();
-    setComponentDefinition( JOB_ACTION_ELEMENT, JOB_SCHEDULER_COMMAND );
-  }
-
-  public String[] getReservedInputNames() {
-    return EXPECTED_INPUTS;
-  }
-
-  public static boolean accepts( Element element ) {
-    boolean result = false;
-    if ( AbstractJobSchedulerAction.accepts( element ) ) {
-      element =
-          (Element) element.selectSingleNode( ActionSequenceDocument.COMPONENT_DEF_NAME + "/" + JOB_ACTION_ELEMENT ); //$NON-NLS-1$
-      result = ( element != null ) && element.getText().equals( JOB_SCHEDULER_COMMAND );
+    public DeleteScheduledJobAction(Element actionDefElement, IActionParameterMgr actionInputProvider) {
+        super(actionDefElement, actionInputProvider);
     }
-    return result;
-  }
+
+    public DeleteScheduledJobAction() {
+        super(COMPONENT_NAME);
+    }
+
+    @Override
+    protected void initNewActionDefinition() {
+        super.initNewActionDefinition();
+        setComponentDefinition(JOB_ACTION_ELEMENT, JOB_SCHEDULER_COMMAND);
+    }
+
+    @Override
+    public String[] getReservedInputNames() {
+        return EXPECTED_INPUTS;
+    }
+
+    public static boolean accepts(Element element) {
+        boolean result = false;
+        if (AbstractJobSchedulerAction.accepts(element)) {
+            element
+                    = (Element) element.selectSingleNode(COMPONENT_DEF_NAME + "/" + JOB_ACTION_ELEMENT); //$NON-NLS-1$
+            result = (element != null) && element.getText().equals(JOB_SCHEDULER_COMMAND);
+        }
+        return result;
+    }
 }

@@ -10,21 +10,22 @@
  * basis, WITHOUT WARRANTY OF ANY KIND, either express or  implied. Please refer to
  * the license for the specific language governing your rights and limitations.
  */
-
 package org.pentaho.actionsequence.dom;
 
 public interface IActionSequenceValidationError {
-  int INPUT_OK = 0;;
+
+    int INPUT_OK = 0;
+    ;
   int INPUT_MISSING = 1;
-  int INPUT_REFERENCES_UNKNOWN_VAR = 2;
-  int INPUT_UNINITIALIZED = 3;
-  int OUTPUT_MISSING = 4;
+    int INPUT_REFERENCES_UNKNOWN_VAR = 2;
+    int INPUT_UNINITIALIZED = 3;
+    int OUTPUT_MISSING = 4;
 
-  int getErrorCode();
+    int getErrorCode();
 
-  String getErrorMsg();
+    String getErrorMsg();
 
-  IActionDefinition getActionDefinition();
+    IActionDefinition getActionDefinition();
 
-  String getParameterName();
+    String getParameterName();
 }

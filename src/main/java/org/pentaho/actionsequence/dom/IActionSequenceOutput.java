@@ -10,25 +10,25 @@
  * basis, WITHOUT WARRANTY OF ANY KIND, either express or  implied. Please refer to
  * the license for the specific language governing your rights and limitations.
  */
-
 package org.pentaho.actionsequence.dom;
 
 /**
- * Convenience class used to distinguish action sequence inputs from action sequence outputs.
- * 
+ * Convenience class used to distinguish action sequence inputs from action
+ * sequence outputs.
+ *
  * @author Angelo Rodriguez
- * 
+ *
  */
 public interface IActionSequenceOutput extends IAbstractIOElement {
 
-  String IS_OUTPUT_PARAM_ATTR = "is-output-parameter";
+    String IS_OUTPUT_PARAM_ATTR = "is-output-parameter";
 
-  IActionSequenceOutputDestination[] getDestinations();
+    IActionSequenceOutputDestination[] getDestinations();
 
-  IActionSequenceOutputDestination addDestination( String destination, String name );
+    IActionSequenceOutputDestination addDestination(String destination, String name);
 
-  boolean isOutputParameter();
+    boolean isOutputParameter();
 
-  void setOutputParameter( boolean isOutputParameter );
+    void setOutputParameter(boolean isOutputParameter);
 
 }

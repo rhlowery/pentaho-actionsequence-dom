@@ -10,22 +10,21 @@
  * basis, WITHOUT WARRANTY OF ANY KIND, either express or  implied. Please refer to
  * the license for the specific language governing your rights and limitations.
  */
-
 package org.pentaho.actionsequence.dom;
 
 public interface IActionIOElement extends IAbstractIOElement {
-  String getMapping();
 
-  /**
-   * Sets the name to which the input/output is mapped.
-   * 
-   * @param mapping
-   *          the mapped name. If null any existing mapping is removed.
-   */
-  void setMapping( String mapping );
+    String getMapping();
 
-  /**
-   * @return the action definition to which this input/output belongs.
-   */
-  IActionDefinition getActionDefinition();
+    /**
+     * Sets the name to which the input/output is mapped.
+     *
+     * @param mapping the mapped name. If null any existing mapping is removed.
+     */
+    void setMapping(String mapping);
+
+    /**
+     * @return the action definition to which this input/output belongs.
+     */
+    IActionDefinition getActionDefinition();
 }

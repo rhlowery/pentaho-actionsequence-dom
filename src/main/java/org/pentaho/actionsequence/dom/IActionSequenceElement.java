@@ -10,31 +10,31 @@
  * basis, WITHOUT WARRANTY OF ANY KIND, either express or  implied. Please refer to
  * the license for the specific language governing your rights and limitations.
  */
-
 package org.pentaho.actionsequence.dom;
 
 import org.dom4j.Element;
 
 /**
  * Interface to be implement by objects that wrap action sequence elements
- * 
+ *
  * @author Angelo Rodriguez
- * 
+ *
  */
 public interface IActionSequenceElement {
 
-  /**
-   * @return the action sequence element wrapped by this object
-   */
-  Element getElement();
+    /**
+     * @return the action sequence element wrapped by this object
+     */
+    Element getElement();
 
-  /**
-   * Removes the element from the action sequence
-   */
-  void delete();
+    /**
+     * Removes the element from the action sequence
+     */
+    void delete();
 
-  /**
-   * @return an action sequence document that wraps the dom document containing the element wrapped by this object.
-   */
-  IActionSequenceDocument getDocument();
+    /**
+     * @return an action sequence document that wraps the dom document
+     * containing the element wrapped by this object.
+     */
+    IActionSequenceDocument getDocument();
 }

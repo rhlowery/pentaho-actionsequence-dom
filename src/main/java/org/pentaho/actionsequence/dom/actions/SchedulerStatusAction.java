@@ -10,39 +10,39 @@
  * basis, WITHOUT WARRANTY OF ANY KIND, either express or  implied. Please refer to
  * the license for the specific language governing your rights and limitations.
  */
-
 package org.pentaho.actionsequence.dom.actions;
 
 import org.dom4j.Element;
-import org.pentaho.actionsequence.dom.ActionSequenceDocument;
+import static org.pentaho.actionsequence.dom.IActionSequenceDocument.COMPONENT_DEF_NAME;
 
 public class SchedulerStatusAction extends ActionDefinition {
 
-  public static final String COMPONENT_NAME = "org.pentaho.component.SchedulerAdminComponent"; //$NON-NLS-1$
-  public static final String SCHEDULER_ACTION_ELEMENT = "schedulerAction"; //$NON-NLS-1$
-  public static final String SCHEDULER_STATUS_CMND = "isSchedulerPaused"; //$NON-NLS-1$
+    public static final String COMPONENT_NAME = "org.pentaho.component.SchedulerAdminComponent"; //$NON-NLS-1$
+    public static final String SCHEDULER_ACTION_ELEMENT = "schedulerAction"; //$NON-NLS-1$
+    public static final String SCHEDULER_STATUS_CMND = "isSchedulerPaused"; //$NON-NLS-1$
 
-  public SchedulerStatusAction( Element actionDefElement, IActionParameterMgr actionInputProvider ) {
-    super( actionDefElement, actionInputProvider );
-  }
-
-  public SchedulerStatusAction() {
-    super( COMPONENT_NAME );
-  }
-
-  protected void initNewActionDefinition() {
-    super.initNewActionDefinition();
-    setComponentDefinition( SCHEDULER_ACTION_ELEMENT, SCHEDULER_STATUS_CMND );
-  }
-
-  public static boolean accepts( Element element ) {
-    boolean result = false;
-    if ( ActionDefinition.accepts( element ) && hasComponentName( element, COMPONENT_NAME ) ) {
-      element =
-          (Element) element.selectSingleNode( ActionSequenceDocument.COMPONENT_DEF_NAME
-              + "/" + SCHEDULER_ACTION_ELEMENT ); //$NON-NLS-1$
-      result = ( element != null ) && element.getText().equals( SCHEDULER_STATUS_CMND );
+    public SchedulerStatusAction(Element actionDefElement, IActionParameterMgr actionInputProvider) {
+        super(actionDefElement, actionInputProvider);
     }
-    return result;
-  }
+
+    public SchedulerStatusAction() {
+        super(COMPONENT_NAME);
+    }
+
+    @Override
+    protected void initNewActionDefinition() {
+        super.initNewActionDefinition();
+        setComponentDefinition(SCHEDULER_ACTION_ELEMENT, SCHEDULER_STATUS_CMND);
+    }
+
+    public static boolean accepts(Element element) {
+        boolean result = false;
+        if (ActionDefinition.accepts(element) && hasComponentName(element, COMPONENT_NAME)) {
+            element
+                    = (Element) element.selectSingleNode(COMPONENT_DEF_NAME
+                            + "/" + SCHEDULER_ACTION_ELEMENT); //$NON-NLS-1$
+            result = (element != null) && element.getText().equals(SCHEDULER_STATUS_CMND);
+        }
+        return result;
+    }
 }

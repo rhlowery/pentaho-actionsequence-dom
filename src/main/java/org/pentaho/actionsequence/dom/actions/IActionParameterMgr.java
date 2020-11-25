@@ -10,7 +10,6 @@
  * basis, WITHOUT WARRANTY OF ANY KIND, either express or  implied. Please refer to
  * the license for the specific language governing your rights and limitations.
  */
-
 package org.pentaho.actionsequence.dom.actions;
 
 import java.io.FileNotFoundException;
@@ -23,17 +22,18 @@ import org.pentaho.actionsequence.dom.IActionResource;
 import org.pentaho.commons.connection.IPentahoStreamSource;
 
 public interface IActionParameterMgr {
-  Object getInputValue( IActionInput actionInput );
 
-  String replaceParameterReferences( String inputString );
+    Object getInputValue(IActionInput actionInput);
 
-  IPentahoStreamSource getDataSource( IActionResource actionResource ) throws FileNotFoundException;
+    String replaceParameterReferences(String inputString);
 
-  InputStream getInputStream( IActionResource actionResource ) throws FileNotFoundException;
+    IPentahoStreamSource getDataSource(IActionResource actionResource) throws FileNotFoundException;
 
-  IPentahoStreamSource getDataSource( IActionInput actionInput );
+    InputStream getInputStream(IActionResource actionResource) throws FileNotFoundException;
 
-  void setOutputValue( IActionOutput actionOutput, Object value );
+    IPentahoStreamSource getDataSource(IActionInput actionInput);
 
-  String getString( IActionResource actionResource ) throws IOException;
+    void setOutputValue(IActionOutput actionOutput, Object value);
+
+    String getString(IActionResource actionResource) throws IOException;
 }

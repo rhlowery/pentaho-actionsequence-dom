@@ -10,28 +10,26 @@
  * basis, WITHOUT WARRANTY OF ANY KIND, either express or  implied. Please refer to
  * the license for the specific language governing your rights and limitations.
  */
-
 package org.pentaho.actionsequence.dom;
 
 /**
  * A wrapper class for an action if statement.
- * 
+ *
  * @author Angelo Rodriguez
- * 
+ *
  */
 public interface IActionIfStatement extends IActionControlStatement {
 
-  /**
-   * Sets the if condition. The condition should be well formatted javascript.
-   * 
-   * @param condition
-   *          the condition.
-   */
-  void setCondition( String condition );
+    /**
+     * Sets the if condition. The condition should be well formatted javascript.
+     *
+     * @param condition the condition.
+     */
+    void setCondition(String condition);
 
-  /**
-   * @return the condition.
-   */
-  String getCondition();
+    /**
+     * @return the condition.
+     */
+    String getCondition();
 
 }

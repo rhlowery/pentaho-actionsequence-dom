@@ -10,7 +10,6 @@
  * basis, WITHOUT WARRANTY OF ANY KIND, either express or  implied. Please refer to
  * the license for the specific language governing your rights and limitations.
  */
-
 package org.pentaho.actionsequence.dom.actions;
 
 /*
@@ -25,147 +24,154 @@ package org.pentaho.actionsequence.dom.actions;
  * basis, WITHOUT WARRANTY OF ANY KIND, either express or  implied. Please refer to 
  * the license for the specific language governing your rights and limitations.
  */
-
 import java.net.URI;
 import java.util.ArrayList;
 
 import org.dom4j.Element;
 import org.pentaho.actionsequence.dom.ActionSequenceValidationError;
+import static org.pentaho.actionsequence.dom.ActionSequenceValidationError.INPUT_REFERENCES_UNKNOWN_VAR;
+import static org.pentaho.actionsequence.dom.ActionSequenceValidationError.INPUT_UNINITIALIZED;
+import static org.pentaho.actionsequence.dom.ActionSequenceValidationError.OUTPUT_MISSING;
 import org.pentaho.actionsequence.dom.IActionInput;
 import org.pentaho.actionsequence.dom.IActionInputSource;
 import org.pentaho.actionsequence.dom.IActionOutput;
 import org.pentaho.actionsequence.dom.IActionResource;
 import org.pentaho.actionsequence.dom.IActionSequenceValidationError;
 
-@SuppressWarnings( { "rawtypes", "unchecked" } )
+@SuppressWarnings({"rawtypes", "unchecked"})
 public class HQLConnectionAction extends ActionDefinition {
 
-  public static final String COMPONENT_NAME = "org.pentaho.component.HQLLookupRule"; //$NON-NLS-1$
-  public static final String PREPARED_COMPONENT_ELEMENT = "prepared_component"; //$NON-NLS-1$
-  public static final String DEFAULT_CONNECTION_NAME = "shared_connection"; //$NON-NLS-1$
-  public static final String PROPERTY = "property"; //$NON-NLS-1$
-  public static final String CLASSNAMES = "classNames"; //$NON-NLS-1$
-  public static final String HIBERNATE_CONFIG = "hibernateConfig"; //$NON-NLS-1$
-  public static final String HQL_CONNECTION_TYPE = "hql-connection"; //$NON-NLS-1$
-  // Added by Marc and Ramaiz
-  public static final String TIMEOUT = "timeout"; //$NON-NLS-1$
-  public static final String MAXROWS = "max_rows"; //$NON-NLS-1$
+    public static final String COMPONENT_NAME = "org.pentaho.component.HQLLookupRule"; //$NON-NLS-1$
+    public static final String PREPARED_COMPONENT_ELEMENT = "prepared_component"; //$NON-NLS-1$
+    public static final String DEFAULT_CONNECTION_NAME = "shared_connection"; //$NON-NLS-1$
+    public static final String PROPERTY = "property"; //$NON-NLS-1$
+    public static final String CLASSNAMES = "classNames"; //$NON-NLS-1$
+    public static final String HIBERNATE_CONFIG = "hibernateConfig"; //$NON-NLS-1$
+    public static final String HQL_CONNECTION_TYPE = "hql-connection"; //$NON-NLS-1$
+    // Added by Marc and Ramaiz
+    public static final String TIMEOUT = "timeout"; //$NON-NLS-1$
+    public static final String MAXROWS = "max_rows"; //$NON-NLS-1$
 
-  protected static final String[] EXPECTED_INPUTS = new String[] { CLASSNAMES };
+    protected static final String[] EXPECTED_INPUTS = new String[]{CLASSNAMES};
 
-  protected static final String[] EXPECTED_RESOURCES = new String[] { HIBERNATE_CONFIG };
+    protected static final String[] EXPECTED_RESOURCES = new String[]{HIBERNATE_CONFIG};
 
-  public HQLConnectionAction( Element actionDefElement, IActionParameterMgr actionInputProvider ) {
-    super( actionDefElement, actionInputProvider );
-  }
-
-  public HQLConnectionAction() {
-    this( COMPONENT_NAME );
-  }
-
-  protected HQLConnectionAction( String componentName ) {
-    super( componentName );
-  }
-
-  public static boolean accepts( Element element ) {
-    return ActionDefinition.accepts( element ) && hasComponentName( element, COMPONENT_NAME );
-  }
-
-  protected void initNewActionDefinition() {
-    super.initNewActionDefinition();
-    setOutputConnectionName( DEFAULT_CONNECTION_NAME );
-  }
-
-  public String[] getReservedInputNames() {
-    return EXPECTED_INPUTS;
-  }
-
-  public String[] getReservedOutputNames() {
-    return new String[] { PREPARED_COMPONENT_ELEMENT };
-  }
-
-  public String[] getReservedResourceNames() {
-    return EXPECTED_RESOURCES;
-  }
-
-  public void setOutputConnectionName( String name ) {
-    setOutput( PREPARED_COMPONENT_ELEMENT, name, HQL_CONNECTION_TYPE );
-  }
-
-  public String getOutputConnectionName() {
-    return getPublicOutputName( PREPARED_COMPONENT_ELEMENT );
-  }
-
-  public IActionOutput getOutputConnectionParam() {
-    return getOutput( PREPARED_COMPONENT_ELEMENT );
-  }
-
-  public IActionSequenceValidationError[] validate() {
-
-    ArrayList errors = new ArrayList();
-    ActionSequenceValidationError validationError = validateInput( CLASSNAMES );
-    if ( validationError != null ) {
-      if ( validationError.errorCode == ActionSequenceValidationError.INPUT_REFERENCES_UNKNOWN_VAR ) {
-        validationError.errorMsg = "Database connection input parameter references unknown variable.";
-        errors.add( validationError );
-      } else if ( validationError.errorCode == ActionSequenceValidationError.INPUT_UNINITIALIZED ) {
-        validationError.errorMsg = "Database connection input parameter is uninitialized.";
-        errors.add( validationError );
-      }
+    public HQLConnectionAction(Element actionDefElement, IActionParameterMgr actionInputProvider) {
+        super(actionDefElement, actionInputProvider);
     }
 
-    validationError = validateInput( HIBERNATE_CONFIG );
-    if ( validationError != null ) {
-      if ( validationError.errorCode == ActionSequenceValidationError.INPUT_REFERENCES_UNKNOWN_VAR ) {
-        validationError.errorMsg = "Database connection input parameter references unknown variable.";
-        errors.add( validationError );
-      } else if ( validationError.errorCode == ActionSequenceValidationError.INPUT_UNINITIALIZED ) {
-        validationError.errorMsg = "Database connection input parameter is uninitialized.";
-        errors.add( validationError );
-      }
+    public HQLConnectionAction() {
+        this(COMPONENT_NAME);
     }
 
-    validationError = validateOutput( PREPARED_COMPONENT_ELEMENT );
-    if ( validationError != null ) {
-      if ( validationError.errorCode == ActionSequenceValidationError.OUTPUT_MISSING ) {
-        validationError.errorMsg = "Missing output connection name.";
-      }
-      errors.add( validationError );
+    protected HQLConnectionAction(String componentName) {
+        super(componentName);
     }
 
-    return (ActionSequenceValidationError[]) errors.toArray( new ActionSequenceValidationError[0] );
-  }
+    public static boolean accepts(Element element) {
+        return ActionDefinition.accepts(element) && hasComponentName(element, COMPONENT_NAME);
+    }
 
-  public void setClassNames( IActionInputSource value ) {
-    setActionInputValue( CLASSNAMES, value );
-  }
+    @Override
+    protected void initNewActionDefinition() {
+        super.initNewActionDefinition();
+        setOutputConnectionName(DEFAULT_CONNECTION_NAME);
+    }
 
-  public IActionInput getClassNames() {
-    return getInput( CLASSNAMES );
-  }
+    @Override
+    public String[] getReservedInputNames() {
+        return EXPECTED_INPUTS;
+    }
 
-  public IActionResource setHibernateConfig( URI uri, String mimeType ) {
-    return setResourceUri( HIBERNATE_CONFIG, uri, mimeType );
-  }
+    @Override
+    public String[] getReservedOutputNames() {
+        return new String[]{PREPARED_COMPONENT_ELEMENT};
+    }
 
-  public IActionResource getHibernateConfigResource() {
-    return getResource( HIBERNATE_CONFIG );
-  }
+    @Override
+    public String[] getReservedResourceNames() {
+        return EXPECTED_RESOURCES;
+    }
 
-  public void setQueryTimeout( IActionInputSource value ) {
-    setActionInputValue( TIMEOUT, value );
-  }
+    public void setOutputConnectionName(String name) {
+        setOutput(PREPARED_COMPONENT_ELEMENT, name, HQL_CONNECTION_TYPE);
+    }
 
-  public IActionInput getQueryTimeout() {
-    return getInput( TIMEOUT );
-  }
+    public String getOutputConnectionName() {
+        return getPublicOutputName(PREPARED_COMPONENT_ELEMENT);
+    }
 
-  public void setMaxRows( IActionInputSource value ) {
-    setActionInputValue( MAXROWS, value );
-  }
+    public IActionOutput getOutputConnectionParam() {
+        return getOutput(PREPARED_COMPONENT_ELEMENT);
+    }
 
-  public IActionInput getMaxRows() {
-    return getInput( MAXROWS );
-  }
+    @Override
+    public IActionSequenceValidationError[] validate() {
+
+        ArrayList errors = new ArrayList();
+        ActionSequenceValidationError validationError = validateInput(CLASSNAMES);
+        if (validationError != null) {
+            if (validationError.errorCode == INPUT_REFERENCES_UNKNOWN_VAR) {
+                validationError.errorMsg = "Database connection input parameter references unknown variable.";
+                errors.add(validationError);
+            } else if (validationError.errorCode == INPUT_UNINITIALIZED) {
+                validationError.errorMsg = "Database connection input parameter is uninitialized.";
+                errors.add(validationError);
+            }
+        }
+
+        validationError = validateInput(HIBERNATE_CONFIG);
+        if (validationError != null) {
+            if (validationError.errorCode == INPUT_REFERENCES_UNKNOWN_VAR) {
+                validationError.errorMsg = "Database connection input parameter references unknown variable.";
+                errors.add(validationError);
+            } else if (validationError.errorCode == INPUT_UNINITIALIZED) {
+                validationError.errorMsg = "Database connection input parameter is uninitialized.";
+                errors.add(validationError);
+            }
+        }
+
+        validationError = validateOutput(PREPARED_COMPONENT_ELEMENT);
+        if (validationError != null) {
+            if (validationError.errorCode == OUTPUT_MISSING) {
+                validationError.errorMsg = "Missing output connection name.";
+            }
+            errors.add(validationError);
+        }
+
+        return (ActionSequenceValidationError[]) errors.toArray(new ActionSequenceValidationError[0]);
+    }
+
+    public void setClassNames(IActionInputSource value) {
+        setActionInputValue(CLASSNAMES, value);
+    }
+
+    public IActionInput getClassNames() {
+        return getInput(CLASSNAMES);
+    }
+
+    public IActionResource setHibernateConfig(URI uri, String mimeType) {
+        return setResourceUri(HIBERNATE_CONFIG, uri, mimeType);
+    }
+
+    public IActionResource getHibernateConfigResource() {
+        return getResource(HIBERNATE_CONFIG);
+    }
+
+    public void setQueryTimeout(IActionInputSource value) {
+        setActionInputValue(TIMEOUT, value);
+    }
+
+    public IActionInput getQueryTimeout() {
+        return getInput(TIMEOUT);
+    }
+
+    public void setMaxRows(IActionInputSource value) {
+        setActionInputValue(MAXROWS, value);
+    }
+
+    public IActionInput getMaxRows() {
+        return getInput(MAXROWS);
+    }
 
 }

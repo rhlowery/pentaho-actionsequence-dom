@@ -10,11 +10,11 @@
  * basis, WITHOUT WARRANTY OF ANY KIND, either express or  implied. Please refer to
  * the license for the specific language governing your rights and limitations.
  */
-
 package org.pentaho.actionsequence.dom;
 
 public interface IActionInputVariable extends IActionInputSource {
-  String getVariableName();
 
-  String getType();
+    String getVariableName();
+
+    String getType();
 }
