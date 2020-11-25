@@ -14,7 +14,6 @@ package org.pentaho.actionsequence.dom;
 
 import java.io.FileNotFoundException;
 import java.net.URI;
-
 import static org.dom4j.DocumentHelper.makeElement;
 import org.dom4j.Element;
 import org.dom4j.tree.DefaultElement;

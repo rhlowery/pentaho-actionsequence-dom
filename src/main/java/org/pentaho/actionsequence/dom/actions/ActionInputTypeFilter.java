@@ -15,7 +15,6 @@ package org.pentaho.actionsequence.dom.actions;
 import static java.lang.Integer.parseInt;
 import java.util.ArrayList;
 import static java.util.Arrays.asList;
-
 import org.pentaho.actionsequence.dom.ActionInput;
 import org.pentaho.actionsequence.dom.ActionInputConstant;
 import org.pentaho.actionsequence.dom.IActionInput;

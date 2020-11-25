@@ -26,6 +26,7 @@ public interface IActionOutput extends IActionInputVariable, IActionIOElement {
      */
     String getPublicName();
 
+    @Override
     String getVariableName();
 
     void setValue(Object value);

@@ -50,6 +50,7 @@ public abstract class AbstractIOElement implements IAbstractIOElement {
      *
      * @param ioName the input/output name
      */
+    @Override
     public void setName(String ioName) {
         ioName = ioName.trim();
         if (ioName.split("\\s+").length > 1) { //$NON-NLS-1$
@@ -64,6 +65,7 @@ public abstract class AbstractIOElement implements IAbstractIOElement {
     /**
      * @return the type of input/output
      */
+    @Override
     public String getType() {
         return ioElement.attributeValue(TYPE_NAME);
     }
@@ -73,6 +75,7 @@ public abstract class AbstractIOElement implements IAbstractIOElement {
      *
      * @param ioType the io type
      */
+    @Override
     public void setType(String ioType) {
         if (!ioType.equals(ioElement.attributeValue(TYPE_NAME))) {
             ioElement.addAttribute(TYPE_NAME, ioType);
@@ -85,6 +88,7 @@ public abstract class AbstractIOElement implements IAbstractIOElement {
    * 
    * @see org.pentaho.designstudio.dom.IActionSequenceElement#delete()
      */
+    @Override
     public void delete() {
         Document doc = ioElement.getDocument();
         if (doc != null) {
@@ -98,10 +102,12 @@ public abstract class AbstractIOElement implements IAbstractIOElement {
    * 
    * @see org.pentaho.designstudio.dom.IActionSequenceElement#getElement()
      */
+    @Override
     public Element getElement() {
         return ioElement;
     }
 
+    @Override
     public boolean equals(Object arg0) {
         boolean result = false;
         if (arg0 != null) {
@@ -118,6 +124,7 @@ public abstract class AbstractIOElement implements IAbstractIOElement {
    * 
    * @see org.pentaho.designstudio.dom.IActionSequenceElement#getDocument()
      */
+    @Override
     public IActionSequenceDocument getDocument() {
         IActionSequenceDocument doc = null;
         if ((ioElement != null) && (ioElement.getDocument() != null)) {
@@ -126,6 +133,7 @@ public abstract class AbstractIOElement implements IAbstractIOElement {
         return doc;
     }
 
+    @Override
     public IActionParameterMgr getParameterMgr() {
         return actionInputProvider;
     }

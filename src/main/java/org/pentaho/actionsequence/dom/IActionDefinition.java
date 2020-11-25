@@ -13,7 +13,6 @@
 package org.pentaho.actionsequence.dom;
 
 import java.net.URI;
-
 import org.dom4j.Element;
 import org.pentaho.actionsequence.dom.actions.IActionInputFilter;
 import org.pentaho.actionsequence.dom.actions.IActionParameterMgr;

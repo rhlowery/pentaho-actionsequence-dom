@@ -13,7 +13,6 @@
 package org.pentaho.actionsequence.dom.actions;
 
 import java.util.ArrayList;
-
 import org.dom4j.Element;
 import org.pentaho.actionsequence.dom.ActionInput;
 import org.pentaho.actionsequence.dom.ActionSequenceValidationError;

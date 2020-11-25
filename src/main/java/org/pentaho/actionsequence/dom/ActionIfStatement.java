@@ -36,6 +36,7 @@ public class ActionIfStatement extends ActionControlStatement implements IAction
      *
      * @param condition the condition.
      */
+    @Override
     public void setCondition(String condition) {
         Element conditionElement = controlElement.element(CONDITION_NAME);
         if (conditionElement == null) {
@@ -49,6 +50,7 @@ public class ActionIfStatement extends ActionControlStatement implements IAction
     /**
      * @return the condition.
      */
+    @Override
     public String getCondition() {
         String condition = ""; //$NON-NLS-1$
         Element conditionElement = controlElement.element(CONDITION_NAME);
@@ -58,6 +60,7 @@ public class ActionIfStatement extends ActionControlStatement implements IAction
         return condition;
     }
 
+    @Override
     protected IActionSequenceValidationError[] validateThis() {
         return EMPTY_ARRAY;
     }

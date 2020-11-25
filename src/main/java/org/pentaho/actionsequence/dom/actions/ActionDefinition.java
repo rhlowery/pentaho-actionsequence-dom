@@ -17,7 +17,6 @@ import java.util.ArrayList;
 import static java.util.Arrays.asList;
 import java.util.Iterator;
 import java.util.List;
-
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import static org.dom4j.DocumentHelper.makeElement;

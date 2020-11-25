@@ -14,7 +14,6 @@ package org.pentaho.actionsequence.dom.actions;
 
 import java.net.URI;
 import java.util.ArrayList;
-
 import org.dom4j.Element;
 import org.pentaho.actionsequence.dom.ActionInputConstant;
 import org.pentaho.actionsequence.dom.ActionSequenceValidationError;

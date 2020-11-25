@@ -13,7 +13,6 @@
 package org.pentaho.actionsequence.dom.actions;
 
 import junit.framework.TestCase;
-
 import static org.dom4j.DocumentHelper.parseText;
 import org.pentaho.actionsequence.dom.ActionInputConstant;
 import org.pentaho.actionsequence.dom.ActionSequenceDocument;

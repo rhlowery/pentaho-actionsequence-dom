@@ -28,6 +28,7 @@ public class ActionInput extends AbstractActionIOElement implements IActionInput
         super(ioElement, actionInputProvider);
     }
 
+    @Override
     public Object getValue() {
         Object value = null;
         if (actionInputProvider != null) {
@@ -36,6 +37,7 @@ public class ActionInput extends AbstractActionIOElement implements IActionInput
         return value;
     }
 
+    @Override
     public Boolean getBooleanValue() {
         Boolean boolValue = null;
         String stringValue = getStringValue();
@@ -45,11 +47,13 @@ public class ActionInput extends AbstractActionIOElement implements IActionInput
         return boolValue;
     }
 
+    @Override
     public boolean getBooleanValue(boolean defaultValue) {
         Boolean boolValue = getBooleanValue();
         return boolValue != null ? boolValue : defaultValue;
     }
 
+    @Override
     public Integer getIntValue() {
         Integer intValue = null;
         String stringValue = getStringValue();
@@ -59,19 +63,23 @@ public class ActionInput extends AbstractActionIOElement implements IActionInput
         return intValue;
     }
 
+    @Override
     public int getIntValue(int defaultValue) {
         Integer intValue = getIntValue();
         return intValue != null ? intValue : defaultValue;
     }
 
+    @Override
     public String getStringValue() {
         return getStringValue(true);
     }
 
+    @Override
     public String getStringValue(boolean replaceParamReferences) {
         return getStringValue(replaceParamReferences, null);
     }
 
+    @Override
     public String getStringValue(boolean replaceParamReferences, String defaultValue) {
         Object theValue = getValue();
         if (replaceParamReferences && (actionInputProvider != null) && (theValue != null)) {
@@ -80,6 +88,7 @@ public class ActionInput extends AbstractActionIOElement implements IActionInput
         return theValue != null ? theValue.toString() : defaultValue;
     }
 
+    @Override
     public String getStringValue(String defaultValue) {
         return getStringValue(true, defaultValue);
     }

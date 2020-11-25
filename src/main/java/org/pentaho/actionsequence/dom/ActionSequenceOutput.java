@@ -16,7 +16,6 @@ import static java.lang.Boolean.parseBoolean;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-
 import org.dom4j.Attribute;
 import static org.dom4j.DocumentHelper.makeElement;
 import org.dom4j.Element;

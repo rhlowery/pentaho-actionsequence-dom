@@ -14,7 +14,6 @@ package org.pentaho.actionsequence.dom.actions;
 
 import java.io.IOException;
 import java.io.StringWriter;
-
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import static org.dom4j.DocumentHelper.parseText;

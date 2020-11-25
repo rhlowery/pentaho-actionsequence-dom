@@ -14,7 +14,6 @@ package org.pentaho.actionsequence.dom.actions;
 
 import java.io.IOException;
 import java.net.URI;
-
 import org.dom4j.Attribute;
 import static org.dom4j.DocumentHelper.makeElement;
 import org.dom4j.Element;

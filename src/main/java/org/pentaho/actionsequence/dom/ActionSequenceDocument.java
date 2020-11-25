@@ -12,6 +12,7 @@
  */
 package org.pentaho.actionsequence.dom;
 
+import java.io.IOException;
 import java.io.StringWriter;
 import static java.lang.System.out;
 import java.net.URI;
@@ -20,8 +21,8 @@ import static java.util.Arrays.asList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-
 import org.dom4j.Document;
+import org.dom4j.DocumentException;
 import static org.dom4j.DocumentHelper.createDocument;
 import static org.dom4j.DocumentHelper.makeElement;
 import static org.dom4j.DocumentHelper.parseText;
@@ -215,6 +216,7 @@ public class ActionSequenceDocument implements IActionSequenceDocument {
      * @param xPath
      * @return the element identified by the specified XPath
      */
+    @Override
     public IActionSequenceElement getElement(String xPath) {
         IActionSequenceElement actionSequenceElement = null;
         Node node = getDocument().selectSingleNode(xPath);
@@ -248,6 +250,7 @@ public class ActionSequenceDocument implements IActionSequenceDocument {
     /**
      * @return the document wrapped by this object
      */
+    @Override
     public Document getDocument() {
         return document;
     }
@@ -255,6 +258,7 @@ public class ActionSequenceDocument implements IActionSequenceDocument {
     /**
      * @return the action sequence description
      */
+    @Override
     public String getDescription() {
         String result = ""; //$NON-NLS-1$
         Element actSeq = (Element) document.selectSingleNode(ACTION_SEQUENCE);
@@ -270,6 +274,7 @@ public class ActionSequenceDocument implements IActionSequenceDocument {
     /**
      * @return the help message
      */
+    @Override
     public String getHelp() {
         String result = ""; //$NON-NLS-1$
         Element actSeq = (Element) document.selectSingleNode(ACTION_SEQUENCE);
@@ -285,6 +290,7 @@ public class ActionSequenceDocument implements IActionSequenceDocument {
     /**
      * @return the action sequence version
      */
+    @Override
     public String getVersion() {
         String result = ""; //$NON-NLS-1$
         Element actSeq = (Element) document.selectSingleNode(ACTION_SEQUENCE);
@@ -301,6 +307,7 @@ public class ActionSequenceDocument implements IActionSequenceDocument {
      * @return the logging level being used when this action sequence is
      * executed.
      */
+    @Override
     public String getLoggingLevel() {
         String result = ""; //$NON-NLS-1$
         Element actSeq = (Element) document.selectSingleNode(ACTION_SEQUENCE);
@@ -316,6 +323,7 @@ public class ActionSequenceDocument implements IActionSequenceDocument {
     /**
      * @return the action sequence author
      */
+    @Override
     public String getAuthor() {
         String result = ""; //$NON-NLS-1$
         Element actSeq = (Element) document.selectSingleNode(ACTION_SEQUENCE);
@@ -331,6 +339,7 @@ public class ActionSequenceDocument implements IActionSequenceDocument {
     /**
      * @return the type of results returned by the action sequence
      */
+    @Override
     public String getResultType() {
         String result = null;
         Element actSeq = (Element) document.selectSingleNode(ACTION_SEQUENCE);
@@ -346,6 +355,7 @@ public class ActionSequenceDocument implements IActionSequenceDocument {
     /**
      * @return the location of the icon used by the action sequence.
      */
+    @Override
     public String getIconLocation() {
         String result = ""; //$NON-NLS-1$
         Element actSeq = (Element) document.selectSingleNode(ACTION_SEQUENCE);
@@ -365,6 +375,7 @@ public class ActionSequenceDocument implements IActionSequenceDocument {
     /**
      * @return the location of the flyover icon used by the action sequence.
      */
+    @Override
     public String getFlyoverIconLocation() {
         String result = ""; //$NON-NLS-1$
         Element actSeq = (Element) document.selectSingleNode(ACTION_SEQUENCE);
@@ -386,6 +397,7 @@ public class ActionSequenceDocument implements IActionSequenceDocument {
     /**
      * @return the action sequence title
      */
+    @Override
     public String getTitle() {
         String result = ""; //$NON-NLS-1$
         Element actSeq = (Element) document.selectSingleNode(ACTION_SEQUENCE);
@@ -403,6 +415,7 @@ public class ActionSequenceDocument implements IActionSequenceDocument {
      *
      * @param value the description
      */
+    @Override
     public void setDescription(String value) {
         Element actSeq = (Element) document.selectSingleNode(ACTION_SEQUENCE);
         Element subElement = makeElement(actSeq, ACTION_SEQUENCE_DOCUMENTATION_DESCRIPT);
@@ -415,6 +428,7 @@ public class ActionSequenceDocument implements IActionSequenceDocument {
      *
      * @param value the help message
      */
+    @Override
     public void setHelp(String value) {
         Element actSeq = (Element) document.selectSingleNode(ACTION_SEQUENCE);
         Element subElement = makeElement(actSeq, ACTION_SEQUENCE_DOCUMENTATION_HELP);
@@ -427,6 +441,7 @@ public class ActionSequenceDocument implements IActionSequenceDocument {
      *
      * @param value the version
      */
+    @Override
     public void setVersion(String value) {
         Element actSeq = (Element) document.selectSingleNode(ACTION_SEQUENCE);
         Element subElement = makeElement(actSeq, ACTION_SEQUENCE_VERSION);
@@ -439,6 +454,7 @@ public class ActionSequenceDocument implements IActionSequenceDocument {
      *
      * @param value the logging level
      */
+    @Override
     public void setLoggingLevel(String value) {
         Element actSeq = (Element) document.selectSingleNode(ACTION_SEQUENCE);
         Element subElement = makeElement(actSeq, ACTION_SEQUENCE_LOGGING_LEVEL);
@@ -451,6 +467,7 @@ public class ActionSequenceDocument implements IActionSequenceDocument {
      *
      * @param value the author name
      */
+    @Override
     public void setAuthor(String value) {
         Element actSeq = (Element) document.selectSingleNode(ACTION_SEQUENCE);
         Element subElement = makeElement(actSeq, ACTION_SEQUENCE_DOCUMENTATION_AUTHOR);
@@ -463,6 +480,7 @@ public class ActionSequenceDocument implements IActionSequenceDocument {
      *
      * @param value the result type
      */
+    @Override
     public void setResultType(String value) {
         Element actSeq = (Element) document.selectSingleNode(ACTION_SEQUENCE);
         if (value == null) {
@@ -483,6 +501,7 @@ public class ActionSequenceDocument implements IActionSequenceDocument {
      *
      * @param value the icon path
      */
+    @Override
     public void setIconLocation(String value) {
         String location = ""; //$NON-NLS-1$
         Element actSeq = (Element) document.selectSingleNode(ACTION_SEQUENCE);
@@ -503,6 +522,7 @@ public class ActionSequenceDocument implements IActionSequenceDocument {
      *
      * @param value the icon path
      */
+    @Override
     public void setFlyoverIconLocation(String value) {
         Element actSeq = (Element) document.selectSingleNode(ACTION_SEQUENCE);
         Element subElement = makeElement(actSeq, ACTION_SEQUENCE_DOCUMENTATION_ICON);
@@ -519,6 +539,7 @@ public class ActionSequenceDocument implements IActionSequenceDocument {
      *
      * @param value the title
      */
+    @Override
     public void setTitle(String value) {
         Element actSeq = (Element) document.selectSingleNode(ACTION_SEQUENCE);
         Element subElement = makeElement(actSeq, ACTION_SEQUENCE_TITLE);
@@ -531,6 +552,7 @@ public class ActionSequenceDocument implements IActionSequenceDocument {
      *
      * @param inputName the input name
      */
+    @Override
     public void deleteInput(String inputName) {
         IActionSequenceInput input = getInput(inputName);
         if (input != null) {
@@ -542,6 +564,7 @@ public class ActionSequenceDocument implements IActionSequenceDocument {
     /**
      * @return the action sequence inputs of the specified type
      */
+    @Override
     public IActionSequenceInput[] getInputs(String[] types) {
         IActionSequenceInput[] allInputs = getInputs();
         List matchingInputs = new ArrayList();
@@ -561,6 +584,7 @@ public class ActionSequenceDocument implements IActionSequenceDocument {
     /**
      * @return all the inputs to the action sequence
      */
+    @Override
     public IActionSequenceInput[] getInputs() {
         List inputsList = document.getRootElement().selectNodes(DOC_INPUTS_NAME + "/*"); //$NON-NLS-1$
         ActionSequenceInput[] inputs = new ActionSequenceInput[inputsList.size()];
@@ -575,6 +599,7 @@ public class ActionSequenceDocument implements IActionSequenceDocument {
      * @param inputName the input name.
      * @return the input with the given name or null if it does not exist
      */
+    @Override
     public IActionSequenceInput getInput(String inputName) {
         Element element = (Element) document.getRootElement().selectSingleNode(DOC_INPUTS_NAME + "/" + inputName); //$NON-NLS-1$
         return element != null ? new ActionSequenceInput(element, actionInputProvider) : null;
@@ -588,6 +613,7 @@ public class ActionSequenceDocument implements IActionSequenceDocument {
      * @param inputType the input type
      * @return the action sequence input
      */
+    @Override
     public IActionSequenceInput createInput(String inputName, String inputType) {
         IActionSequenceInput input = getInput(inputName);
         if (input == null) {
@@ -609,6 +635,7 @@ public class ActionSequenceDocument implements IActionSequenceDocument {
      *
      * @param outputName the output name.
      */
+    @Override
     public void deleteOutput(String outputName) {
         IActionSequenceOutput output = getOutput(outputName);
         if (output != null) {
@@ -620,6 +647,7 @@ public class ActionSequenceDocument implements IActionSequenceDocument {
     /**
      * @return an array of all the outputs from this action sequence.
      */
+    @Override
     public IActionSequenceOutput[] getOutputs() {
         List outputsList = document.getRootElement().selectNodes(DOC_OUTPUTS_NAME + "/*"); //$NON-NLS-1$
         ActionSequenceOutput[] outputs = new ActionSequenceOutput[outputsList.size()];
@@ -635,6 +663,7 @@ public class ActionSequenceDocument implements IActionSequenceDocument {
      * @return the action sequence output with the given name or null if it does
      * not exist.
      */
+    @Override
     public IActionSequenceOutput getOutput(String outputName) {
         Element element = (Element) document.getRootElement().selectSingleNode(DOC_OUTPUTS_NAME + "/" + outputName); //$NON-NLS-1$
         return element != null ? new ActionSequenceOutput(element, actionInputProvider) : null;
@@ -648,6 +677,7 @@ public class ActionSequenceDocument implements IActionSequenceDocument {
      * @param outputType the input type
      * @return the action sequence output
      */
+    @Override
     public IActionSequenceOutput createOutput(String outputName, String outputType) {
         IActionSequenceOutput output = getOutput(outputName);
         if (output == null) {
@@ -671,6 +701,7 @@ public class ActionSequenceDocument implements IActionSequenceDocument {
      *
      * @param resourceName the resource name
      */
+    @Override
     public void deleteResource(String resourceName) {
         IActionSequenceResource resource = getResource(resourceName);
         if (resource != null) {
@@ -682,6 +713,7 @@ public class ActionSequenceDocument implements IActionSequenceDocument {
     /**
      * @return all the action sequence resources
      */
+    @Override
     public IActionSequenceResource[] getResources() {
         List resourcesList = document.getRootElement().selectNodes(DOC_RESOURCES_NAME + "/*"); //$NON-NLS-1$
         ActionSequenceResource[] resources = new ActionSequenceResource[resourcesList.size()];
@@ -696,6 +728,7 @@ public class ActionSequenceDocument implements IActionSequenceDocument {
      * @param resourceName the resource name.
      * @return the resource with the given name or null if it does not exist
      */
+    @Override
     public IActionSequenceResource getResource(String resourceName) {
         Element element = (Element) document.getRootElement().selectSingleNode(DOC_RESOURCES_NAME + "/" + resourceName); //$NON-NLS-1$
         return element != null ? new ActionSequenceResource(element, actionInputProvider) : null;
@@ -710,6 +743,7 @@ public class ActionSequenceDocument implements IActionSequenceDocument {
      * @param mimeType the resource mime type
      * @return the action sequence resource
      */
+    @Override
     public IActionSequenceResource setResourceUri(String resourceName, URI uri, String mimeType) {
         IActionSequenceResource docResource = getResource(resourceName);
         if (uri == null) {
@@ -730,6 +764,7 @@ public class ActionSequenceDocument implements IActionSequenceDocument {
         return docResource;
     }
 
+    @Override
     public IActionLoop getRootLoop() {
         return new ActionLoop(
                 (Element) document.selectSingleNode("/" + ACTION_SEQUENCE + "/" + ACTIONS_NAME), actionInputProvider); //$NON-NLS-1$ //$NON-NLS-2$ 
@@ -742,6 +777,7 @@ public class ActionSequenceDocument implements IActionSequenceDocument {
      * @param index the index of where to insert the loop
      * @return the create action loop
      */
+    @Override
     public IActionLoop addLoop(String loopOn, int index) {
         return getRootLoop().addLoop(loopOn, index);
     }
@@ -751,6 +787,7 @@ public class ActionSequenceDocument implements IActionSequenceDocument {
      *
      * @param loopOn the name of the paremater to loop on
      */
+    @Override
     public IActionLoop addLoop(String loopOn) {
         return getRootLoop().addLoop(loopOn);
     }
@@ -760,6 +797,7 @@ public class ActionSequenceDocument implements IActionSequenceDocument {
      *
      * @param condition the if condition
      */
+    @Override
     public IActionIfStatement addIf(String condition) {
         return getRootLoop().addIf(condition);
     }
@@ -771,6 +809,7 @@ public class ActionSequenceDocument implements IActionSequenceDocument {
      * @param index the index of where to insert the if statment
      * @return the createe if statment
      */
+    @Override
     public IActionIfStatement addIf(String condition, int index) {
         return getRootLoop().addIf(condition, index);
     }
@@ -779,6 +818,7 @@ public class ActionSequenceDocument implements IActionSequenceDocument {
      * @return all the top level action definitions and control statments in the
      * action sequence.
      */
+    @Override
     public IActionSequenceExecutableStatement[] getExecutableChildren() {
         return getRootLoop().getChildren();
     }
@@ -793,6 +833,7 @@ public class ActionSequenceDocument implements IActionSequenceDocument {
      * @throws IllegalAccessException
      * @throws InstantiationException
      */
+    @Override
     public IActionDefinition addAction(Class actionDefinitionClass) {
         return getRootLoop().addAction(actionDefinitionClass);
     }
@@ -806,10 +847,12 @@ public class ActionSequenceDocument implements IActionSequenceDocument {
      * @throws IllegalAccessException
      * @throws InstantiationException
      */
+    @Override
     public IActionDefinition addAction(Class actionDefinitionClass, int index) {
         return getRootLoop().addAction(actionDefinitionClass, index);
     }
 
+    @Override
     public void addListener(IActionSequenceDocumentListener listener) {
         ArrayList listenerList = (ArrayList) listenersMap.get(document);
         if (listenerList == null) {
@@ -819,6 +862,7 @@ public class ActionSequenceDocument implements IActionSequenceDocument {
         listenerList.add(listener);
     }
 
+    @Override
     public void removeListener(IActionSequenceDocumentListener listener) {
         ArrayList listenerList = (ArrayList) listenersMap.get(document);
         if (listenerList != null) {
@@ -1050,6 +1094,7 @@ public class ActionSequenceDocument implements IActionSequenceDocument {
         }
     }
 
+    @Override
     public boolean equals(Object arg0) {
         boolean result = false;
         if (arg0 != null) {
@@ -1093,20 +1138,24 @@ public class ActionSequenceDocument implements IActionSequenceDocument {
         return prevDefs;
     }
 
+    @Override
     public IActionSequenceExecutableStatement[] getPrecedingExecutables(IActionDefinition actionDefinition) {
         return (IActionSequenceExecutableStatement[]) getAncestorExecutables(actionDefinition, true).toArray(
                 new IActionSequenceExecutableStatement[0]);
     }
 
+    @Override
     public IActionSequenceExecutableStatement[] getPrecedingExecutables(IActionControlStatement actControlStatement) {
         return (IActionSequenceExecutableStatement[]) getAncestorExecutables(actControlStatement, true).toArray(
                 new IActionSequenceExecutableStatement[0]);
     }
 
+    @Override
     public IActionDefinition[] getPrecedingActionDefinitions(IActionDefinition actionDefinition) {
         return (IActionDefinition[]) getAncestorExecutables(actionDefinition, false).toArray(new ActionDefinition[0]);
     }
 
+    @Override
     public IActionDefinition[] getPrecedingActionDefinitions(IActionControlStatement controlStatement) {
         return (IActionDefinition[]) getAncestorExecutables(controlStatement, false).toArray(new ActionDefinition[0]);
     }
@@ -1119,6 +1168,7 @@ public class ActionSequenceDocument implements IActionSequenceDocument {
      * @param types the desired input types
      * @return
      */
+    @Override
     public IActionInputVariable[] getAvailInputVariables(IActionDefinition actionDefinition, String[] types) {
         List availParams = new ArrayList();
         availParams.addAll(asList(getInputs(types)));
@@ -1137,10 +1187,12 @@ public class ActionSequenceDocument implements IActionSequenceDocument {
      * @param types the desired input type
      * @return
      */
+    @Override
     public IActionInputVariable[] getAvailInputVariables(IActionDefinition actionDefinition, String type) {
         return getAvailInputVariables(actionDefinition, new String[]{type});
     }
 
+    @Override
     public IActionInputVariable[] getAvailInputVariables(IActionControlStatement controlStatement) {
         List availParams = new ArrayList();
         if (controlStatement instanceof ActionLoop) {
@@ -1171,6 +1223,7 @@ public class ActionSequenceDocument implements IActionSequenceDocument {
         return (IActionInputVariable[]) availParams.toArray(new IActionInputVariable[0]);
     }
 
+    @Override
     public IActionSequenceElement[] getReferencesTo(IActionSequenceInput actionSequenceInput) {
         ArrayList references = new ArrayList();
         if (this.equals(actionSequenceInput.getDocument())) {
@@ -1194,6 +1247,7 @@ public class ActionSequenceDocument implements IActionSequenceDocument {
         return (IActionSequenceElement[]) references.toArray(new IActionSequenceElement[0]);
     }
 
+    @Override
     public IActionSequenceElement[] getBrokenReferences() {
         String xPath1
                 = "//" + ACTION_DEFINITION_NAME + "/" + ACTION_INPUTS_NAME + "/*"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
@@ -1238,6 +1292,7 @@ public class ActionSequenceDocument implements IActionSequenceDocument {
         return (IActionSequenceElement[]) brokenReferences.toArray(new IActionSequenceElement[0]);
     }
 
+    @Override
     public IActionResource[] getReferencesTo(IActionSequenceResource actionSequenceResource) {
         ArrayList actionInputs = new ArrayList();
         if (this.equals(actionSequenceResource.getDocument())) {
@@ -1254,6 +1309,7 @@ public class ActionSequenceDocument implements IActionSequenceDocument {
         return (IActionResource[]) actionInputs.toArray(new ActionResource[0]);
     }
 
+    @Override
     public IActionSequenceElement[] getReferencesTo(IActionOutput actionOutput) {
         ArrayList references = new ArrayList();
         if (this.equals(actionOutput.getDocument())) {
@@ -1288,6 +1344,7 @@ public class ActionSequenceDocument implements IActionSequenceDocument {
         return (IActionSequenceElement[]) references.toArray(new IActionSequenceElement[0]);
     }
 
+    @Override
     public IActionSequenceValidationError[] validate() {
         ArrayList errors = new ArrayList();
         IActionSequenceExecutableStatement[] executableChildren = getExecutableChildren();
@@ -1314,13 +1371,14 @@ public class ActionSequenceDocument implements IActionSequenceDocument {
             writer.write(parseText(document.asXML()));
             writer.close();
             document = parseText(stringWriter.toString());
-        } catch (Exception e) {
+        } catch (IOException | DocumentException e) {
             e.printStackTrace();
             return (null);
         }
         return (document);
     }
 
+    @Override
     public String toString() {
         String string = null;
         try {
@@ -1334,7 +1392,7 @@ public class ActionSequenceDocument implements IActionSequenceDocument {
             writer.close();
             Document tempDocument = parseText(stringWriter.toString());
             string = tempDocument.getRootElement().asXML();
-        } catch (Exception e) {
+        } catch (IOException | DocumentException e) {
             string = super.toString();
         }
         return string;
@@ -1401,6 +1459,7 @@ public class ActionSequenceDocument implements IActionSequenceDocument {
      * @param newParentControlStatement the new parent if/loop statement. May be
      * null.
      */
+    @Override
     public void moveStatement(IActionSequenceExecutableStatement statementToMove,
             IActionControlStatement newParentControlStatement) {
         if (newParentControlStatement == null) {
@@ -1424,6 +1483,7 @@ public class ActionSequenceDocument implements IActionSequenceDocument {
      * @param index the index of the statement within the parent control
      * statement.
      */
+    @Override
     public void moveStatement(IActionSequenceExecutableStatement statementToMove,
             IActionControlStatement newParentControlStatement, int index) {
         if (newParentControlStatement == null) {

@@ -13,7 +13,6 @@
 package org.pentaho.actionsequence.dom;
 
 import java.net.URI;
-
 import org.dom4j.Document;
 
 /**
@@ -431,6 +430,7 @@ public interface IActionSequenceDocument {
 
     IActionSequenceValidationError[] validate();
 
+    @Override
     String toString();
 
     void moveStatement(IActionSequenceExecutableStatement statementToMove,

@@ -13,7 +13,6 @@
 package org.pentaho.actionsequence.dom;
 
 import java.util.HashMap;
-
 import javax.swing.table.TableModel;
 
 /**
@@ -35,6 +34,7 @@ public interface IActionSequenceInput extends IActionInputVariable, IAbstractIOE
    * 
    * @see org.pentaho.designstudio.dom.ActionSequenceIO#setType(java.lang.String)
      */
+    @Override
     void setType(String ioType);
 
     /**
@@ -85,6 +85,7 @@ public interface IActionSequenceInput extends IActionInputVariable, IAbstractIOE
 
     IActionSequenceInputSource addSource(int index, String origin, String name);
 
+    @Override
     String getVariableName();
 
 }

@@ -15,7 +15,6 @@ package org.pentaho.actionsequence.dom.actions;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-
 import org.pentaho.actionsequence.dom.IActionInput;
 import org.pentaho.actionsequence.dom.IActionOutput;
 import org.pentaho.actionsequence.dom.IActionResource;

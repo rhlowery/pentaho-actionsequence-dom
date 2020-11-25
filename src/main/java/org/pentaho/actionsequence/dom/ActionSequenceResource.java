@@ -17,7 +17,6 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.List;
-
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import static org.dom4j.DocumentHelper.makeElement;

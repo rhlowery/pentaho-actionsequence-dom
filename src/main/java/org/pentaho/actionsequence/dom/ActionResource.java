@@ -16,7 +16,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URI;
-
 import org.dom4j.Attribute;
 import org.dom4j.Document;
 import org.dom4j.Element;
@@ -46,6 +45,7 @@ public class ActionResource extends AbstractActionIOElement implements IActionRe
     /**
      * @return the name of the resource
      */
+    @Override
     public String getName() {
         return ioElement.getName();
     }
@@ -55,6 +55,7 @@ public class ActionResource extends AbstractActionIOElement implements IActionRe
      *
      * @param resourceName the resource name
      */
+    @Override
     public void setName(String resourceName) {
         if (!ioElement.getName().equals(resourceName)) {
             ioElement.setName(resourceName);
@@ -66,6 +67,7 @@ public class ActionResource extends AbstractActionIOElement implements IActionRe
      * @return the name to which the resource is mapped. Returns an empty string
      * if the input/output is not mapped.
      */
+    @Override
     public String getMapping() {
         String name = ""; //$NON-NLS-1$
         Attribute attr = ioElement.attribute(MAPPING_NAME);
@@ -83,6 +85,7 @@ public class ActionResource extends AbstractActionIOElement implements IActionRe
      *
      * @param mapping the mapped name. If null any existing mapping is removed.
      */
+    @Override
     public void setMapping(String mapping) {
         if ((mapping == null) || (mapping.trim().length() == 0) || mapping.trim().equals(getName())) {
             if (ioElement.attribute(MAPPING_NAME) != null) {
@@ -103,6 +106,7 @@ public class ActionResource extends AbstractActionIOElement implements IActionRe
    * 
    * @see org.pentaho.designstudio.dom.IActionSequenceElement#delete()
      */
+    @Override
     public void delete() {
         Document doc = ioElement.getDocument();
         if (doc != null) {
@@ -111,6 +115,7 @@ public class ActionResource extends AbstractActionIOElement implements IActionRe
         }
     }
 
+    @Override
     public boolean equals(Object arg0) {
         boolean result = false;
         if (arg0 != null) {
@@ -127,6 +132,7 @@ public class ActionResource extends AbstractActionIOElement implements IActionRe
    * 
    * @see org.pentaho.designstudio.dom.IActionSequenceElement#getElement()
      */
+    @Override
     public Element getElement() {
         return ioElement;
     }
@@ -136,6 +142,7 @@ public class ActionResource extends AbstractActionIOElement implements IActionRe
    * 
    * @see org.pentaho.designstudio.dom.IActionSequenceElement#getDocument()
      */
+    @Override
     public IActionSequenceDocument getDocument() {
         ActionSequenceDocument doc = null;
         if ((ioElement != null) && (ioElement.getDocument() != null)) {
@@ -148,11 +155,13 @@ public class ActionResource extends AbstractActionIOElement implements IActionRe
      * @return the mapped name if it exists, otherwise the resource name is
      * returned.
      */
+    @Override
     public String getPublicName() {
         String mapping = ioElement.attributeValue(MAPPING_NAME);
         return ((mapping != null) && (mapping.trim().length() > 0)) ? mapping.trim() : ioElement.getName();
     }
 
+    @Override
     public IActionDefinition getActionDefinition() {
         ActionDefinition actionDefinition = null;
         if (ioElement != null) {
@@ -168,14 +177,17 @@ public class ActionResource extends AbstractActionIOElement implements IActionRe
         return actionDefinition;
     }
 
+    @Override
     public String getType() {
         return null;
     }
 
+    @Override
     public void setType(String ioType) {
         throw new UnsupportedOperationException();
     }
 
+    @Override
     public URI getUri() {
         URI uri = null;
         IActionSequenceResource actionSequenceResource = getDocument().getResource(getPublicName());
@@ -185,6 +197,7 @@ public class ActionResource extends AbstractActionIOElement implements IActionRe
         return uri;
     }
 
+    @Override
     public String getMimeType() {
         String mimeType = null;
         IActionSequenceResource actionSequenceResource = getDocument().getResource(getPublicName());
@@ -194,6 +207,7 @@ public class ActionResource extends AbstractActionIOElement implements IActionRe
         return mimeType;
     }
 
+    @Override
     public void setURI(URI uri) {
         String logicalName = getPublicName();
         IActionSequenceResource actionSequenceResource = getDocument().getResource(logicalName);
@@ -220,6 +234,7 @@ public class ActionResource extends AbstractActionIOElement implements IActionRe
         }
     }
 
+    @Override
     public void setMimeType(String mimeType) {
         String logicalName = getPublicName();
         IActionSequenceResource actionSequenceResource = getDocument().getResource(logicalName);
@@ -246,6 +261,7 @@ public class ActionResource extends AbstractActionIOElement implements IActionRe
         return logicalName;
     }
 
+    @Override
     public IPentahoStreamSource getDataSource() throws FileNotFoundException {
         IPentahoStreamSource dataSource = null;
         if (actionInputProvider != null) {
@@ -254,6 +270,7 @@ public class ActionResource extends AbstractActionIOElement implements IActionRe
         return dataSource;
     }
 
+    @Override
     public InputStream getInputStream() throws FileNotFoundException {
         InputStream inputStream = null;
         if (actionInputProvider != null) {

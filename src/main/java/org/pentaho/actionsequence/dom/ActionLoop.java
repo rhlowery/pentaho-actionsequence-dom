@@ -14,7 +14,6 @@ package org.pentaho.actionsequence.dom;
 
 import static java.lang.Boolean.parseBoolean;
 import java.util.ArrayList;
-
 import org.dom4j.Attribute;
 import org.dom4j.Element;
 import static org.pentaho.actionsequence.dom.ActionSequenceDocument.fireControlStatementChanged;

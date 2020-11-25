@@ -13,7 +13,6 @@
 package org.pentaho.actionsequence.dom;
 
 import java.net.URI;
-
 import org.dom4j.DocumentException;
 import org.dom4j.Element;
 
@@ -40,6 +39,7 @@ public interface IActionSequenceResource extends IAbstractIOElement {
     /**
      * @return the resource name
      */
+    @Override
     String getName();
 
     /**
@@ -47,6 +47,7 @@ public interface IActionSequenceResource extends IAbstractIOElement {
      *
      * @param resourceName the resource name
      */
+    @Override
     void setName(String resourceName);
 
     /**
@@ -76,6 +77,7 @@ public interface IActionSequenceResource extends IAbstractIOElement {
     /**
      * @return the resource file type
      */
+    @Override
     String getType();
 
     /**
@@ -83,6 +85,7 @@ public interface IActionSequenceResource extends IAbstractIOElement {
      *
      * @param resourceType the resource file type
      */
+    @Override
     void setType(String resourceType);
 
     /*
@@ -90,6 +93,7 @@ public interface IActionSequenceResource extends IAbstractIOElement {
    * 
    * @see org.pentaho.designstudio.dom.IActionSequenceElement#delete()
      */
+    @Override
     void delete();
 
     /*
@@ -97,6 +101,7 @@ public interface IActionSequenceResource extends IAbstractIOElement {
    * 
    * @see org.pentaho.designstudio.dom.IActionSequenceElement#getElement()
      */
+    @Override
     Element getElement();
 
     /*
@@ -104,6 +109,7 @@ public interface IActionSequenceResource extends IAbstractIOElement {
    * 
    * @see org.pentaho.designstudio.dom.IActionSequenceElement#getDocument()
      */
+    @Override
     IActionSequenceDocument getDocument();
 
     URI getUri();

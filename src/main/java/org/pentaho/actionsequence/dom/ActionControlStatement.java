@@ -16,7 +16,6 @@ import java.util.ArrayList;
 import static java.util.Arrays.asList;
 import java.util.Iterator;
 import java.util.List;
-
 import org.dom4j.Document;
 import org.dom4j.Element;
 import org.dom4j.tree.DefaultElement;
@@ -42,10 +41,12 @@ public abstract class ActionControlStatement implements IActionControlStatement 
         this.actionInputProvider = actionInputProvider;
     }
 
+    @Override
     public Element getElement() {
         return controlElement;
     }
 
+    @Override
     public Element getControlElement() {
         return controlElement;
     }
@@ -60,13 +61,14 @@ public abstract class ActionControlStatement implements IActionControlStatement 
      * @throws IllegalAccessException
      * @throws InstantiationException
      */
+    @Override
     public IActionDefinition addAction(Class actionDefinitionClass) {
         ActionDefinition action = null;
         try {
             action = (ActionDefinition) actionDefinitionClass.newInstance();
             controlElement.elements().add(action.getElement());
             fireActionAdded(action);
-        } catch (Exception e) {
+        } catch (IllegalAccessException | InstantiationException e) {
             e.printStackTrace();
         }
         return action;
@@ -84,6 +86,7 @@ public abstract class ActionControlStatement implements IActionControlStatement 
      * @throws IllegalAccessException
      * @throws InstantiationException
      */
+    @Override
     public IActionDefinition addAction(Class actionDefClass, int index) {
         IActionDefinition actionDef = null;
         try {
@@ -106,7 +109,7 @@ public abstract class ActionControlStatement implements IActionControlStatement 
                     actionDef = addAction(actionDefClass);
                 }
             }
-        } catch (Exception e) {
+        } catch (IllegalAccessException | InstantiationException e) {
             e.printStackTrace();
         }
         return actionDef;
@@ -115,6 +118,7 @@ public abstract class ActionControlStatement implements IActionControlStatement 
     /**
      * @return the child actions and control statements
      */
+    @Override
     public IActionSequenceExecutableStatement[] getChildren() {
         List allChildren = controlElement.elements();
         List filteredChildren = new ArrayList();
@@ -139,6 +143,7 @@ public abstract class ActionControlStatement implements IActionControlStatement 
    * 
    * @see org.pentaho.designstudio.dom.IActionSequenceElement#getDocument()
      */
+    @Override
     public IActionSequenceDocument getDocument() {
         ActionSequenceDocument doc = null;
         if ((controlElement != null) && (controlElement.getDocument() != null)) {
@@ -152,6 +157,7 @@ public abstract class ActionControlStatement implements IActionControlStatement 
    * 
    * @see org.pentaho.designstudio.dom.IActionSequenceElement#delete()
      */
+    @Override
     public void delete() {
         Document doc = controlElement.getDocument();
         if (doc != null) {
@@ -165,6 +171,7 @@ public abstract class ActionControlStatement implements IActionControlStatement 
      * @return the control statement that contains this action definition or
      * null if there is no parent control statement.
      */
+    @Override
     public IActionControlStatement getParent() {
         IActionControlStatement controlStatement = null;
         if (controlElement != null) {
@@ -188,6 +195,7 @@ public abstract class ActionControlStatement implements IActionControlStatement 
      *
      * @param actionDef the action definition to be added.
      */
+    @Override
     public void add(IActionDefinition actionDef) {
         actionDef.delete();
         controlElement.elements().add(actionDef.getElement());
@@ -202,6 +210,7 @@ public abstract class ActionControlStatement implements IActionControlStatement 
      * greater than the number of children then the new action is added at the
      * end of the list of children.
      */
+    @Override
     public void add(IActionDefinition actionDef, int index) {
         IActionSequenceElement[] children = getChildren();
         if (index >= children.length) {
@@ -231,6 +240,7 @@ public abstract class ActionControlStatement implements IActionControlStatement 
      *
      * @param controlStatement the control statment to be added.
      */
+    @Override
     public void add(IActionControlStatement controlStatement) {
         controlStatement.delete();
         controlElement.elements().add(controlStatement.getControlElement());
@@ -245,6 +255,7 @@ public abstract class ActionControlStatement implements IActionControlStatement 
      * index is greater than the number of children then the new control
      * statement is added at the end of the list of children.
      */
+    @Override
     public void add(IActionControlStatement controlStatement, int index) {
         IActionSequenceElement[] children = getChildren();
         if (index >= children.length) {
@@ -273,6 +284,7 @@ public abstract class ActionControlStatement implements IActionControlStatement 
      *
      * @param loopOn the loop on variable name
      */
+    @Override
     public IActionLoop addLoop(String loopOn) {
         Element child = createLoopElement();
         controlElement.elements().add(child);
@@ -289,6 +301,7 @@ public abstract class ActionControlStatement implements IActionControlStatement 
      * greater than the number of children then the new loop is added at the end
      * of the list of children.
      */
+    @Override
     public IActionLoop addLoop(String loopOn, int index) {
         Object[] children = getChildren();
         IActionLoop actionLoop = null;
@@ -319,6 +332,7 @@ public abstract class ActionControlStatement implements IActionControlStatement 
      *
      * @param condition the if condition
      */
+    @Override
     public IActionIfStatement addIf(String condition) {
         Element child = createIfElement();
         controlElement.elements().add(child);
@@ -335,6 +349,7 @@ public abstract class ActionControlStatement implements IActionControlStatement 
      * index is greater than the number of children then the new if statement is
      * added at the end of the list of children.
      */
+    @Override
     public IActionIfStatement addIf(String condition, int index) {
         Object[] children = getChildren();
         IActionIfStatement actionIf = null;
@@ -379,10 +394,12 @@ public abstract class ActionControlStatement implements IActionControlStatement 
      * @param types the desired input type
      * @return the list of available inputs
      */
+    @Override
     public IActionInputVariable[] getAvailInputVariables() {
         return getDocument().getAvailInputVariables(this);
     }
 
+    @Override
     public boolean equals(Object arg0) {
         boolean result = false;
         if (arg0 != null) {
@@ -403,20 +420,24 @@ public abstract class ActionControlStatement implements IActionControlStatement 
      * @param types the desired input type
      * @return the preceding acton defintions.
      */
+    @Override
     public IActionDefinition[] getPrecedingActionDefinitions() {
         return getDocument().getPrecedingActionDefinitions(this);
     }
 
+    @Override
     public IActionSequenceExecutableStatement[] getPrecedingExecutableStatements() {
         return getDocument().getPrecedingExecutables(this);
     }
 
     protected abstract IActionSequenceValidationError[] validateThis();
 
+    @Override
     public IActionSequenceValidationError[] validate() {
         return validate(false);
     }
 
+    @Override
     public IActionSequenceValidationError[] validate(boolean validateDescendants) {
         ArrayList errors = new ArrayList();
         errors.add(validateThis());

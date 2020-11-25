@@ -24,16 +24,14 @@ import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
-
+import static javax.xml.XMLConstants.FEATURE_SECURE_PROCESSING;
 import org.apache.commons.logging.Log;
+import static org.apache.commons.logging.LogFactory.getLog;
 import org.dom4j.Document;
+import org.dom4j.DocumentException;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 import org.xml.sax.SAXException;
-
-import static javax.xml.XMLConstants.FEATURE_SECURE_PROCESSING;
-import static org.apache.commons.logging.LogFactory.getLog;
-import org.dom4j.DocumentException;
 
 @SuppressWarnings({"rawtypes", "unchecked"})
 public class ActionFactory {

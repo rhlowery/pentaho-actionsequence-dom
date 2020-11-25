@@ -15,7 +15,6 @@ package org.pentaho.actionsequence.dom;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.net.URI;
-
 import org.dom4j.Element;
 import org.pentaho.commons.connection.IPentahoStreamSource;
 
@@ -63,22 +62,30 @@ public interface IActionResource extends IActionIOElement {
 
     InputStream getInputStream() throws FileNotFoundException;
 
+    @Override
     void delete();
 
+    @Override
     void setMapping(String publicName);
 
+    @Override
     void setName(String resourceName);
 
+    @Override
     void setType(String ioType);
 
+    @Override
     Element getElement();
 
+    @Override
     String getMapping();
 
+    @Override
     String getName();
 
     String getPublicName();
 
+    @Override
     String getType();
 
 }

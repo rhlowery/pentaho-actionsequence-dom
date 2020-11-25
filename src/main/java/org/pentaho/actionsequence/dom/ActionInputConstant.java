@@ -65,18 +65,22 @@ public class ActionInputConstant implements IActionInput, IActionInputSource {
         this.actionParameterMgr = actionParameterMgr;
     }
 
+    @Override
     public Object getValue() {
         return value;
     }
 
+    @Override
     public String getStringValue() {
         return getStringValue(true, null);
     }
 
+    @Override
     public String getStringValue(boolean replaceParamReferences) {
         return getStringValue(replaceParamReferences, null);
     }
 
+    @Override
     public String getStringValue(boolean replaceParamReferences, String defaultValue) {
         Object theValue = value;
         if (replaceParamReferences && (actionParameterMgr != null) && (theValue != null)) {
@@ -85,10 +89,12 @@ public class ActionInputConstant implements IActionInput, IActionInputSource {
         return theValue != null ? theValue.toString() : defaultValue;
     }
 
+    @Override
     public String getStringValue(String defaultValue) {
         return getStringValue(true, defaultValue);
     }
 
+    @Override
     public Boolean getBooleanValue() {
         Boolean boolValue = null;
         String stringValue = getStringValue();
@@ -98,11 +104,13 @@ public class ActionInputConstant implements IActionInput, IActionInputSource {
         return boolValue;
     }
 
+    @Override
     public boolean getBooleanValue(boolean defaultValue) {
         Boolean boolValue = getBooleanValue();
         return boolValue != null ? boolValue : defaultValue;
     }
 
+    @Override
     public Integer getIntValue() {
         Integer intValue = null;
         String stringValue = getStringValue();
@@ -116,16 +124,19 @@ public class ActionInputConstant implements IActionInput, IActionInputSource {
         return intValue;
     }
 
+    @Override
     public int getIntValue(int defaultValue) {
         Integer intValue = getIntValue();
         return intValue != null ? intValue : defaultValue;
     }
 
+    @Override
     public boolean equals(Object obj) {
         return value != null && (obj instanceof ActionInputConstant)
                 && value.equals(((ActionInputConstant) obj).getValue());
     }
 
+    @Override
     public String getName() {
         return inputName;
     }

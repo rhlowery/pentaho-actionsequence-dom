@@ -16,7 +16,6 @@ import java.net.URI;
 import java.util.ArrayList;
 import static java.util.Arrays.asList;
 import java.util.List;
-
 import org.dom4j.Element;
 import org.pentaho.actionsequence.dom.ActionInputConstant;
 import org.pentaho.actionsequence.dom.IActionInput;
