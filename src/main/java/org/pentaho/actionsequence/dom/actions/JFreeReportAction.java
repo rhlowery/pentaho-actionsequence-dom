@@ -137,7 +137,7 @@ public class JFreeReportAction extends ActionDefinition {
 
         public void setDataClass(String className) {
             ActionInputConstant actConstant = new ActionInputConstant(className, null);
-            setActionInputValue(JFreeReportAction.REPORT_DATA_JAR_CLASS_ELEMENT, actConstant);
+            setActionInputValue(REPORT_DATA_JAR_CLASS_ELEMENT, actConstant);
             if (className != null) {
                 setData(null);
                 setDataComponent(null);
@@ -155,7 +155,7 @@ public class JFreeReportAction extends ActionDefinition {
         }
 
         public String getDataClass() {
-            Object className = getInput(JFreeReportAction.REPORT_DATA_JAR_CLASS_ELEMENT).getValue();
+            Object className = getInput(REPORT_DATA_JAR_CLASS_ELEMENT).getValue();
             if ((className != null) && (actionParameterMgr != null)) {
                 className = actionParameterMgr.replaceParameterReferences(className.toString());
             }
@@ -163,7 +163,7 @@ public class JFreeReportAction extends ActionDefinition {
         }
 
         public void setDataClassParam(IActionInputVariable variable) {
-            setActionInputValue(JFreeReportAction.REPORT_DATA_JAR_CLASS_ELEMENT, variable);
+            setActionInputValue(REPORT_DATA_JAR_CLASS_ELEMENT, variable);
             if (variable != null) {
                 setData(null);
                 setDataComponent(null);
@@ -181,13 +181,13 @@ public class JFreeReportAction extends ActionDefinition {
         }
 
         public ActionInput getDataClassParam() {
-            return getInputParam(JFreeReportAction.REPORT_DATA_JAR_CLASS_ELEMENT);
+            return getInputParam(REPORT_DATA_JAR_CLASS_ELEMENT);
 
         }
 
         public IActionResource setJar(URI uri) {
             IActionResource actionResource
-                    = setResourceUri(JFreeReportAction.REPORT_DATA_JAR_ELEMENT, uri, "application/java-archive");
+                    = setResourceUri(REPORT_DATA_JAR_ELEMENT, uri, "application/java-archive");
             if (uri != null) {
                 setData(null);
                 setDataComponent(null);
@@ -206,7 +206,7 @@ public class JFreeReportAction extends ActionDefinition {
         }
 
         public IActionResource getJar() {
-            return getResource(JFreeReportAction.REPORT_DATA_JAR_ELEMENT);
+            return getResource(REPORT_DATA_JAR_ELEMENT);
         }
     }
 
@@ -263,7 +263,7 @@ public class JFreeReportAction extends ActionDefinition {
         }
 
         public IActionResource getJar() {
-            return getResource(JFreeReportAction.REPORT_JAR_ELEMENT);
+            return getResource(REPORT_JAR_ELEMENT);
         }
     }
 
@@ -626,17 +626,17 @@ public class JFreeReportAction extends ActionDefinition {
             setResourceUri(REPORT_WIZ_SPEC_ELEMENT, null, mimeType);
         } else {
             String componentName = "JFreeReportComponent"; //$NON-NLS-1$
-            if (uri.getSchemeSpecificPart().indexOf(".xreportspec") >= 0) {
+            if (uri.getSchemeSpecificPart().contains(".xreportspec")) {
                 componentName = "ReportWizardSpecComponent"; //$NON-NLS-1$
             }
             if (!getComponentName().endsWith(componentName)) {
                 setComponentName(componentName);
             }
             if ("JFreeReportComponent".equals(componentName)) { //$NON-NLS-1$
-                setResourceUri(JFreeReportAction.REPORT_WIZ_SPEC_ELEMENT, null, null);
+                setResourceUri(REPORT_WIZ_SPEC_ELEMENT, null, null);
                 actionResource = setResourceUri(REPORT_DEFINITION_ELEMENT, uri, mimeType);
             } else if ("ReportWizardSpecComponent".equals(componentName)) { //$NON-NLS-1$
-                setResourceUri(JFreeReportAction.REPORT_DEFINITION_ELEMENT, null, null);
+                setResourceUri(REPORT_DEFINITION_ELEMENT, null, null);
                 actionResource = setResourceUri(REPORT_WIZ_SPEC_ELEMENT, uri, mimeType);
             }
             setReportDefinition(null);

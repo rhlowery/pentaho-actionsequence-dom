@@ -178,7 +178,7 @@ public class EmailAction extends ActionDefinition {
         if (actionInput.getValue() instanceof HashMap) {
             actionInput
                     = new HashMapInput(((ActionInput) actionInput).getElement(),
-                            ((ActionInput) actionInput).getParameterMgr(), EmailAction.PLAIN_MSG_ELEMENT);
+                            ((ActionInput) actionInput).getParameterMgr(), PLAIN_MSG_ELEMENT);
             if (actionInput.getValue() == null) {
                 actionInput = null;
             }
@@ -206,7 +206,7 @@ public class EmailAction extends ActionDefinition {
         if (actionInput.getValue() instanceof HashMap) {
             actionInput
                     = new HashMapInput(((ActionInput) actionInput).getElement(),
-                            ((ActionInput) actionInput).getParameterMgr(), EmailAction.SUBJECT_ELEMENT);
+                            ((ActionInput) actionInput).getParameterMgr(), SUBJECT_ELEMENT);
             if (actionInput.getValue() == null) {
                 actionInput = null;
             }

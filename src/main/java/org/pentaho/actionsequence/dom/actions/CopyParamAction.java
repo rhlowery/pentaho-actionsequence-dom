@@ -96,8 +96,8 @@ public class CopyParamAction extends ActionDefinition {
     }
 
     public void setCopyFrom(IActionInputVariable value) {
-        if (!COPY_FROM_ELEMENT.equals(getComponentDefinitionValue(CopyParamAction.COPY_FROM_XPATH))) {
-            setComponentDefinition(CopyParamAction.COPY_FROM_XPATH, COPY_FROM_ELEMENT, false);
+        if (!COPY_FROM_ELEMENT.equals(getComponentDefinitionValue(COPY_FROM_XPATH))) {
+            setComponentDefinition(COPY_FROM_XPATH, COPY_FROM_ELEMENT, false);
         }
         setActionInputValue(COPY_FROM_ELEMENT, value);
         IActionOutput actionOutput = getOutputCopy();
@@ -107,7 +107,7 @@ public class CopyParamAction extends ActionDefinition {
     }
 
     public IActionInput getCopyFrom() {
-        String copyFromVarName = getComponentDefinitionValue(CopyParamAction.COPY_FROM_XPATH);
+        String copyFromVarName = getComponentDefinitionValue(COPY_FROM_XPATH);
         if ((copyFromVarName == null) || (copyFromVarName.trim().length() == 0)) {
             copyFromVarName = COPY_FROM_ELEMENT;
         }
@@ -140,7 +140,7 @@ public class CopyParamAction extends ActionDefinition {
 
     @Override
     public IActionSequenceValidationError[] validate() {
-        String copyFromVarName = getComponentDefinitionValue(CopyParamAction.COPY_FROM_XPATH);
+        String copyFromVarName = getComponentDefinitionValue(COPY_FROM_XPATH);
         if ((copyFromVarName == null) || (copyFromVarName.trim().length() == 0)) {
             copyFromVarName = COPY_FROM_ELEMENT;
         }

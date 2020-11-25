@@ -944,7 +944,7 @@ public class ActionDefinition implements IActionDefinition {
                 try {
                     if (componentDefElement != null) {
                         String xmlString = componentDefElement.asXML();
-                        if (xmlString.indexOf("{" + oldName + "}") >= 0) { //$NON-NLS-1$ //$NON-NLS-2$
+                        if (xmlString.contains("{" + oldName + "}")) { //$NON-NLS-1$ //$NON-NLS-2$
                             xmlString = xmlString.replaceAll("\\{" + oldName + "\\}", "{" + newName + "}"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
                             Document document = parseText(xmlString);
                             actionDefElement.remove(componentDefElement);

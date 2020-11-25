@@ -9,7 +9,6 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
-import org.dom4j.DocumentHelper;
 import static org.dom4j.DocumentHelper.makeElement;
 import org.dom4j.Element;
 import org.dom4j.tree.DefaultElement;
@@ -221,7 +220,7 @@ public class ActionSequenceInput extends AbstractIOElement implements IActionSeq
                 defValElement.addAttribute(TYPE_NAME, RESULTSET_TYPE);
                 Element columnsElement = ioElement.addElement(RESULTSET_DEFAULT_COLUMNS);
                 for (int colIdx = 0; colIdx < defValue.getColumnCount(); colIdx++) {
-                    columnsElement.addElement(defValue.getColumnName(colIdx)).addAttribute(ActionSequenceResource.TYPE_NAME, STRING_TYPE);
+                    columnsElement.addElement(defValue.getColumnName(colIdx)).addAttribute(TYPE_NAME, STRING_TYPE);
                 }
                 for (int rowIdx = 0; rowIdx < defValue.getRowCount(); rowIdx++) {
                     Element rowElement = defValElement.addElement(RESULTSET_ROW);

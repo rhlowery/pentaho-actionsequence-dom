@@ -296,7 +296,7 @@ public class EmailAttachment implements IActionSequenceElement {
     public IPentahoStreamSource getContent() throws IOException {
         IPentahoStreamSource dataSrc = null;
         IActionResource actionResource = null;
-        Attribute attribute = getElement().attribute(EmailAttachment.ATTACHMENT_RESOURCE_ATTRIBUTE);
+        Attribute attribute = getElement().attribute(ATTACHMENT_RESOURCE_ATTRIBUTE);
         if (attribute != null) {
             actionResource = getEmailAction().getResource(attribute.getValue().trim());
         }
